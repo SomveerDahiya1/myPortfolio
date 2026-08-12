@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Somveer Dahiya — Portfolio XP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/boot.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/desktop.css"/>
+    <link rel="stylesheet" href="css/taskbar.css"/>
+    <link rel="stylesheet" href="css/window.css"/>
+    <link rel="stylesheet" href="css/components.css"/>
+    <link rel="stylesheet" href="css/chatbot.css"/>
+    <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+
+<!-- =========================================================
+     BOOT SCREEN
+     ========================================================= -->
+
+<div id="boot">
+
+    <div class="boot-logo">
+        Java<span>OS</span>
+    </div>
+
+    <div class="boot-tagline">
+        Backend Developer Edition
+    </div>
+
+    <div class="boot-bar-wrap">
+        <div class="boot-bar" id="boot-bar"></div>
+    </div>
+
+    <div class="boot-text" id="boot-text">
+        Loading...
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     LOGIN SCREEN
+     ========================================================= -->
+
+<div id="login">
+
+    <div class="login-bg"></div>
+
+    <div class="login-box">
+
+        <div class="login-title">
+            JavaOS Professional
+        </div>
+
+        <div class="login-sub">
+            Backend Developer Edition
+        </div>
+
+        <div class="login-user" id="login-user">
+
+            <div class="login-avatar">
+                👨‍💻
+            </div>
+
+            <div class="login-name">
+                Somveer Dahiya
+            </div>
+
+            <div class="login-role">
+                Java Backend Developer
+            </div>
+
+        </div>
+
+        <div class="login-hint">
+            Click to log in
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     DESKTOP
+     ========================================================= -->
+
+<div id="desktop">
+
+    <div class="wallpaper"></div>
+
+
+    <!-- =====================================================
+         DESKTOP ICONS
+         ===================================================== -->
+
+    <div class="desktop-icons" id="desktop-icons">
+
+        <div
+                class="dicon"
+                data-win="about"
+                ondblclick="openWin('about')"
+        >
+            <div class="dicon-img">
+                👤
+            </div>
+
+            <span>
+                About Me
+            </span>
+        </div>
+
+
+        <div
+                class="dicon"
+                data-win="skills"
+                ondblclick="openWin('skills')"
+        >
+            <div class="dicon-img">
+                🛠️
+            </div>
+
+            <span>
+                Skills
+            </span>
+        </div>
+
+
+        <div
+                class="dicon"
+                data-win="projects"
+                ondblclick="openWin('projects')"
+        >
+            <div class="dicon-img">
+                📁
+            </div>
+
+            <span>
+                Projects
+            </span>
+        </div>
+
+
+        <div
+                class="dicon"
+                data-win="experience"
+                ondblclick="openWin('experience')"
+        >
+            <div class="dicon-img">
+                💼
+            </div>
+
+            <span>
+                Experience
+            </span>
+        </div>
+
+
+        <div
+                class="dicon"
+                data-win="resume"
+                ondblclick="openWin('resume')"
+        >
+            <div class="dicon-img">
+                📄
+            </div>
+
+            <span>
+                Resume.txt
+            </span>
+        </div>
+
+
+        <div
+                class="dicon"
+                data-win="contact"
+                ondblclick="openWin('contact')"
+        >
+            <div class="dicon-img">
+                📧
+            </div>
+
+            <span>
+                Contact
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TASKBAR
+         ===================================================== -->
+
+    <div id="taskbar">
+
+        <div
+                id="start-btn"
+                onclick="toggleStart()"
+        >
+            <span class="win-logo">
+                ☕
+            </span>
+
+            Start
+        </div>
+
+
+        <div
+                class="taskbar-tasks"
+                id="taskbar-tasks"
+        ></div>
+
+
+        <div class="taskbar-tray">
+
+            <span title="Java 17">
+                ☕
+            </span>
+
+            <span title="Spring Boot">
+                🍃
+            </span>
+
+            <div id="clock">
+                12:00 PM
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         START MENU
+         ===================================================== -->
+
+    <div id="start-menu">
+
+        <!-- Start Menu Header -->
+
+        <div class="sm-header">
+
+            <div class="sm-avatar">
+                👨‍💻
+            </div>
+
+            <div>
+
+                <div class="sm-name">
+                    Somveer Dahiya
+                </div>
+
+                <div class="sm-role">
+                    Backend Developer
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Start Menu Body -->
+
+        <div class="sm-body">
+
+            <!-- Left Side -->
+
+            <div class="sm-left">
+
+                <div
+                        class="sm-item"
+                        onclick="openWin('about');toggleStart()"
+                >
+
+                    <span class="si">
+                        👤
+                    </span>
+
+                    <div>
+
+                        <span class="si-label">
+                            About Me
+                        </span>
+
+                        <span class="si-sub">
+                            Who I am
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                        class="sm-item"
+                        onclick="openWin('skills');toggleStart()"
+                >
+
+                    <span class="si">
+                        🛠️
+                    </span>
+
+                    <div>
+
+                        <span class="si-label">
+                            Skills
+                        </span>
+
+                        <span class="si-sub">
+                            Tech stack
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                        class="sm-item"
+                        onclick="openWin('projects');toggleStart()"
+                >
+
+                    <span class="si">
+                        📁
+                    </span>
+
+                    <div>
+
+                        <span class="si-label">
+                            Projects
+                        </span>
+
+                        <span class="si-sub">
+                            My work
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                        class="sm-item"
+                        onclick="openWin('experience');toggleStart()"
+                >
+
+                    <span class="si">
+                        💼
+                    </span>
+
+                    <div>
+
+                        <span class="si-label">
+                            Experience
+                        </span>
+
+                        <span class="si-sub">
+                            Work history
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="sm-sep"></div>
+
+
+                <div
+                        class="sm-item"
+                        onclick="openWin('resume');toggleStart()"
+                >
+
+                    <span class="si">
+                        📄
+                    </span>
+
+                    <div>
+
+                        <span class="si-label">
+                            Resume.txt
+                        </span>
+
+                        <span class="si-sub">
+                            Open in Notepad
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                        class="sm-item"
+                        onclick="openWin('contact');toggleStart()"
+                >
+
+                    <span class="si">
+                        📧
+                    </span>
+
+                    <div>
+
+                        <span class="si-label">
+                            Contact
+                        </span>
+
+                        <span class="si-sub">
+                            Get in touch
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Right Side -->
+
+            <div class="sm-right">
+
+                <div class="sm-right-title">
+                    Quick Links
+                </div>
+
+
+                <div
+                        class="sm-item"
+                        onclick="window.open('https://github.com','_blank')"
+                >
+
+                    <span class="si">
+                        🐙
+                    </span>
+
+                    <span
+                            class="si-label"
+                            style="font-size:10px"
+                    >
+                        GitHub
+                    </span>
+
+                </div>
+
+
+                <div
+                        class="sm-item"
+                        onclick="window.open('https://linkedin.com','_blank')"
+                >
+
+                    <span class="si">
+                        🔗
+                    </span>
+
+                    <span
+                            class="si-label"
+                            style="font-size:10px"
+                    >
+                        LinkedIn
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Start Menu Footer -->
+
+        <div class="sm-footer">
+
+            <div
+                    class="sm-footer-btn"
+                    onclick="location.reload()"
+            >
+                🔄 Restart
+            </div>
+
+            <div
+                    class="sm-footer-btn"
+                    onclick="location.reload()"
+            >
+                ⏻ Log Off
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NOTIFICATION
+         ===================================================== -->
+
+    <div
+            class="notif"
+            id="notif"
+            style="display:none;right:0;position:fixed;bottom:30px"
+    >
+
+        <div class="notif-title">
+            ☕ Spring Boot Started
+        </div>
+
+        <div class="notif-body">
+            Portfolio loaded in 0.3s on port 8080
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     WINDOW TEMPLATES
+     ========================================================= -->
+
+
+<!-- =========================================================
+     ABOUT
+     ========================================================= -->
+
+<template id="tpl-about">
+
+    <div class="about-wrap">
+
+        <div class="about-sidebar">
+
+            <div class="about-avatar">
+                👨‍💻
+            </div>
+
+            <div class="about-name">
+                Somveer Dahiya
+            </div>
+
+            <div class="about-title">
+                Java Backend Developer
+            </div>
+
+
+            <div class="sidebar-links">
+
+                <div class="slink">
+                    📍 India
+                </div>
+
+                <div
+                        class="slink"
+                        onclick="openWin('contact')"
+                >
+                    📧 Contact
+                </div>
+
+                <div
+                        class="slink"
+                        onclick="openWin('resume')"
+                >
+                    📄 Resume
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-main">
+
+            <h2>
+                👋 Hello, World!
+            </h2>
+
+            <p>
+                I'm a Backend Developer specializing in
+                <strong>Java</strong> and
+                <strong>Spring Boot</strong>.
+                I build scalable REST APIs, microservices,
+                and database-driven systems.
+            </p>
+
+            <p>
+                I don't do CSS — and I'm proud of it.
+                My controllers are clean, my services are tested,
+                and my SQL queries are indexed.
+                I believe in writing code that other developers
+                enjoy reading.
+            </p>
+
+            <p>
+                When I'm not building APIs, I'm probably debugging
+                a Hibernate lazy-loading issue or arguing about
+                why tabs are better than spaces.
+            </p>
+
+
+            <div class="info-grid">
+
+                <div class="info-item">
+                    <label>
+                        Experience
+                    </label>
+
+                    <span>
+                        2+ Years
+                    </span>
+                </div>
+
+
+                <div class="info-item">
+                    <label>
+                        Primary Language
+                    </label>
+
+                    <span>
+                        Java 17
+                    </span>
+                </div>
+
+
+                <div class="info-item">
+                    <label>
+                        Framework
+                    </label>
+
+                    <span>
+                        Spring Boot
+                    </span>
+                </div>
+
+
+                <div class="info-item">
+                    <label>
+                        Availability
+                    </label>
+
+                    <span>
+                        Open to Work
+                    </span>
+                </div>
+
+
+                <div class="info-item">
+                    <label>
+                        Preferred IDE
+                    </label>
+
+                    <span>
+                        IntelliJ IDEA
+                    </span>
+                </div>
+
+
+                <div class="info-item">
+                    <label>
+                        Favorite DB
+                    </label>
+
+                    <span>
+                        MySQL
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<!-- =========================================================
+     SKILLS
+     ========================================================= -->
+
+<template id="tpl-skills">
+
+    <div class="explorer-wrap">
+
+        <div class="explorer-tree">
+
+            <div
+                    class="tree-item active"
+                    onclick="showSkillSection('core')"
+            >
+                <span class="tree-icon">
+                    📂
+                </span>
+
+                Core Java
+            </div>
+
+
+            <div
+                    class="tree-item"
+                    onclick="showSkillSection('spring')"
+            >
+                <span class="tree-icon">
+                    📁
+                </span>
+
+                Spring
+            </div>
+
+
+            <div
+                    class="tree-item"
+                    onclick="showSkillSection('database')"
+            >
+                <span class="tree-icon">
+                    📁
+                </span>
+
+                Databases
+            </div>
+
+
+            <div
+                    class="tree-item"
+                    onclick="showSkillSection('devops')"
+            >
+                <span class="tree-icon">
+                    📁
+                </span>
+
+                DevOps
+            </div>
+
+
+            <div
+                    class="tree-item"
+                    onclick="showSkillSection('testing')"
+            >
+                <span class="tree-icon">
+                    📁
+                </span>
+
+                Testing
+            </div>
+
+        </div>
+
+
+        <div
+                class="explorer-main"
+                id="skills-main"
+        >
+
+            <!-- Core Java -->
+
+            <div
+                    id="section-core"
+                    class="skill-section"
+            >
+
+                <h3>
+                    Core Java
+                </h3>
+
+                <div class="skill-pills">
+
+                    <span class="pill java">
+                        Java 17
+                    </span>
+
+                    <span class="pill java">
+                        OOP
+                    </span>
+
+                    <span class="pill java">
+                        Collections
+                    </span>
+
+                    <span class="pill java">
+                        Streams API
+                    </span>
+
+                    <span class="pill java">
+                        Multithreading
+                    </span>
+
+                    <span class="pill java">
+                        Generics
+                    </span>
+
+                    <span class="pill java">
+                        Lambda
+                    </span>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Java 17</span>
+                        <span>90%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:90%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Data Structures</span>
+                        <span>80%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:80%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Multithreading</span>
+                        <span>70%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:70%"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Spring -->
+
+            <div
+                    id="section-spring"
+                    class="skill-section"
+                    style="display:none"
+            >
+
+                <h3>
+                    Spring Ecosystem
+                </h3>
+
+                <div class="skill-pills">
+
+                    <span class="pill spring">
+                        Spring Boot
+                    </span>
+
+                    <span class="pill spring">
+                        Spring MVC
+                    </span>
+
+                    <span class="pill spring">
+                        Spring Security
+                    </span>
+
+                    <span class="pill spring">
+                        Spring Data JPA
+                    </span>
+
+                    <span class="pill spring">
+                        Hibernate
+                    </span>
+
+                    <span class="pill spring">
+                        Spring Cloud
+                    </span>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Spring Boot</span>
+                        <span>88%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:88%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Spring Security</span>
+                        <span>75%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:75%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Hibernate/JPA</span>
+                        <span>82%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:82%"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Database -->
+
+            <div
+                    id="section-database"
+                    class="skill-section"
+                    style="display:none"
+            >
+
+                <h3>
+                    Databases
+                </h3>
+
+                <div class="skill-pills">
+
+                    <span class="pill db">
+                        MySQL
+                    </span>
+
+                    <span class="pill db">
+                        PostgreSQL
+                    </span>
+
+                    <span class="pill db">
+                        Redis
+                    </span>
+
+                    <span class="pill db">
+                        H2
+                    </span>
+
+                    <span class="pill db">
+                        SQL
+                    </span>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>MySQL</span>
+                        <span>85%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:85%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>PostgreSQL</span>
+                        <span>72%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:72%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Redis</span>
+                        <span>65%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:65%"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DevOps -->
+
+            <div
+                    id="section-devops"
+                    class="skill-section"
+                    style="display:none"
+            >
+
+                <h3>
+                    DevOps & Build Tools
+                </h3>
+
+                <div class="skill-pills">
+
+                    <span class="pill devops">
+                        Docker
+                    </span>
+
+                    <span class="pill devops">
+                        Maven
+                    </span>
+
+                    <span class="pill devops">
+                        Git
+                    </span>
+
+                    <span class="pill devops">
+                        GitHub Actions
+                    </span>
+
+                    <span class="pill devops">
+                        Linux
+                    </span>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Docker</span>
+                        <span>75%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:75%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Maven</span>
+                        <span>85%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:85%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Git</span>
+                        <span>88%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:88%"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Testing -->
+
+            <div
+                    id="section-testing"
+                    class="skill-section"
+                    style="display:none"
+            >
+
+                <h3>
+                    Testing
+                </h3>
+
+                <div class="skill-pills">
+
+                    <span class="pill test">
+                        JUnit 5
+                    </span>
+
+                    <span class="pill test">
+                        Mockito
+                    </span>
+
+                    <span class="pill test">
+                        Integration Tests
+                    </span>
+
+                    <span class="pill test">
+                        Testcontainers
+                    </span>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>JUnit 5</span>
+                        <span>80%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:80%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="xp-bar-wrap">
+
+                    <div class="xp-bar-label">
+                        <span>Mockito</span>
+                        <span>78%</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div
+                                class="xp-fill"
+                                style="width:78%"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<!-- =========================================================
+     PROJECTS
+     ========================================================= -->
+
+<template id="tpl-projects">
+
+    <div class="projects-wrap">
+
+        <div class="proj-card">
+
+            <div
+                    class="proj-header"
+                    onclick="toggleProj(this)"
+            >
+
+                <span class="proj-icon">
+                    🛒
+                </span>
+
+                <span class="proj-name">
+                    E-Commerce REST API
+                </span>
+
+                <span class="proj-status status-live">
+                    ● LIVE
+                </span>
+
+            </div>
+
+
+            <div class="proj-body open">
+
+                <p>
+                    Full-featured product & order management API
+                    with JWT auth, role-based access control,
+                    Stripe integration, and Swagger docs.
+                    Serving 50k+ requests/day in production.
+                </p>
+
+                <div class="proj-tech">
+
+                    <span class="pill spring">
+                        Spring Boot
+                    </span>
+
+                    <span class="pill db">
+                        MySQL
+                    </span>
+
+                    <span class="pill api">
+                        JWT
+                    </span>
+
+                    <span class="pill devops">
+                        Docker
+                    </span>
+
+                </div>
+
+                <div class="proj-links-row">
+
+                    <span class="proj-link">
+                        🐙 GitHub
+                    </span>
+
+                    <span class="proj-link">
+                        📖 Docs
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="proj-card">
+
+            <div
+                    class="proj-header"
+                    onclick="toggleProj(this)"
+            >
+
+                <span class="proj-icon">
+                    🎓
+                </span>
+
+                <span class="proj-name">
+                    Student Management System
+                </span>
+
+                <span class="proj-status status-api">
+                    ● API
+                </span>
+
+            </div>
+
+
+            <div class="proj-body">
+
+                <p>
+                    CRUD API for managing students, courses,
+                    and grades. Includes pagination, sorting,
+                    filtering, and CSV export. Built with
+                    Spring Data JPA and Hibernate.
+                </p>
+
+                <div class="proj-tech">
+
+                    <span class="pill spring">
+                        Spring Boot
+                    </span>
+
+                    <span class="pill java">
+                        Hibernate
+                    </span>
+
+                    <span class="pill db">
+                        PostgreSQL
+                    </span>
+
+                </div>
+
+                <div class="proj-links-row">
+
+                    <span class="proj-link">
+                        🐙 GitHub
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="proj-card">
+
+            <div
+                    class="proj-header"
+                    onclick="toggleProj(this)"
+            >
+
+                <span class="proj-icon">
+                    🔗
+                </span>
+
+                <span class="proj-name">
+                    URL Shortener Microservice
+                </span>
+
+                <span class="proj-status status-live">
+                    ● LIVE
+                </span>
+
+            </div>
+
+
+            <div class="proj-body">
+
+                <p>
+                    High-performance URL shortener with Redis
+                    caching, rate limiting, and analytics.
+                    Clean microservice architecture with
+                    Docker Compose and CI/CD pipeline.
+                </p>
+
+                <div class="proj-tech">
+
+                    <span class="pill spring">
+                        Spring Boot
+                    </span>
+
+                    <span class="pill db">
+                        Redis
+                    </span>
+
+                    <span class="pill devops">
+                        Docker
+                    </span>
+
+                    <span class="pill test">
+                        JUnit 5
+                    </span>
+
+                </div>
+
+                <div class="proj-links-row">
+
+                    <span class="proj-link">
+                        🐙 GitHub
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="proj-card">
+
+            <div
+                    class="proj-header"
+                    onclick="toggleProj(this)"
+            >
+
+                <span class="proj-icon">
+                    💬
+                </span>
+
+                <span class="proj-name">
+                    Chat API (WebSocket)
+                </span>
+
+                <span class="proj-status status-api">
+                    ● API
+                </span>
+
+            </div>
+
+
+            <div class="proj-body">
+
+                <p>
+                    Real-time messaging backend using Spring
+                    WebSocket and STOMP. Supports chat rooms,
+                    private messaging, and message persistence
+                    to MySQL.
+                </p>
+
+                <div class="proj-tech">
+
+                    <span class="pill spring">
+                        Spring Boot
+                    </span>
+
+                    <span class="pill api">
+                        WebSocket
+                    </span>
+
+                    <span class="pill db">
+                        MySQL
+                    </span>
+
+                </div>
+
+                <div class="proj-links-row">
+
+                    <span class="proj-link">
+                        🐙 GitHub
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<!-- =========================================================
+     EXPERIENCE
+     ========================================================= -->
+
+<template id="tpl-experience">
+
+    <div class="exp-wrap">
+
+        <div class="exp-card">
+
+            <span class="exp-date-badge">
+                Jan 2024 – Present
+            </span>
+
+            <h3>
+                Backend Developer
+            </h3>
+
+            <div class="exp-company-name">
+                // TechCorp India Pvt. Ltd.
+            </div>
+
+            <ul>
+
+                <li>
+                    Built and maintained 15+ REST APIs using
+                    Spring Boot serving 10,000+ daily users
+                </li>
+
+                <li>
+                    Reduced average DB query time by 40%
+                    through Hibernate optimization and proper indexing
+                </li>
+
+                <li>
+                    Implemented JWT-based authentication and
+                    Spring Security across 3 microservices
+                </li>
+
+                <li>
+                    Wrote comprehensive unit and integration
+                    tests (JUnit 5 + Mockito), 85% code coverage
+                </li>
+
+                <li>
+                    Containerized services with Docker;
+                    configured CI/CD via GitHub Actions
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="exp-card">
+
+            <span class="exp-date-badge">
+                Jun 2023 – Dec 2023
+            </span>
+
+            <h3>
+                Java Backend Intern
+            </h3>
+
+            <div class="exp-company-name">
+                // StartupXYZ
+            </div>
+
+            <ul>
+
+                <li>
+                    Developed CRUD APIs for internal admin panel
+                    using Spring MVC + Thymeleaf
+                </li>
+
+                <li>
+                    Wrote 60+ unit tests with JUnit 5 and Mockito
+                    achieving 80% code coverage
+                </li>
+
+                <li>
+                    Deployed services on Docker and set up
+                    basic GitHub Actions pipeline
+                </li>
+
+                <li>
+                    Integrated third-party email service (SendGrid)
+                    for notification system
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="exp-card">
+
+            <span
+                    class="exp-date-badge"
+                    style="background:#5a7ab0"
+            >
+                2020 – 2023
+            </span>
+
+            <h3>
+                B.Tech — Computer Science
+            </h3>
+
+            <div class="exp-company-name">
+                // Dronacharya College of Engineering,India
+            </div>
+
+            <ul>
+
+                <li>
+                    CGPA: 8.2/10
+                </li>
+
+                <li>
+                    Final Year Project:
+                    Library Management System
+                    (Spring Boot + MySQL)
+                </li>
+
+                <li>
+                    Data Structures, DBMS, Operating Systems,
+                    Computer Networks
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
+<template id="tpl-resume">
+
+    <div class="notepad-wrap">
+
+        <div class="notepad-toolbar">
+
+            <span class="notepad-tool">
+                File
+            </span>
+
+            <span class="notepad-tool">
+                Edit
+            </span>
+
+            <span class="notepad-tool">
+                Format
+            </span>
+
+            <span
+                    class="notepad-tool"
+                    onclick="window.print()"
+            >
+                Print
+            </span>
+
+        </div>
+
+
+        <div class="notepad-body">
+
+            ========================================
+            RAHUL SHARMA — Backend Developer
+            Java | Spring Boot | REST APIs
+            ========================================
+
+            CONTACT
+            -------
+            Email    : somveerdahiya009@gmail.com
+            Phone    : +91-8447771990
+            LinkedIn : linkedin.com/in/somveerdahiya2005
+            GitHub   : github.com/SomveerDahiya1
+            Location : India
+
+            SUMMARY
+            -------
+            Backend Developer with 2+ years of experience
+            building scalable REST APIs and microservices
+            using Java 17 and Spring Boot. Strong in
+            database design, API security, and clean code.
+            I don't do CSS — my controllers are clean and
+            my endpoints never return 500s.
+
+            TECH STACK
+            ----------
+            Languages   : Java(Core & Advanced), SQL
+            Frameworks & Tech :Spring Core, Spring Boot, RESTful APIs
+            Core CS Concepts: DSA , Object-Oriented Programming, Operating Systems, DBMS
+            Database & ORM  : MySQL, PostgreSQL, Redis , Hibernate
+            Cloud & DevOps: AWS (EC2, Lambda, S3, IAM), Docker
+            Testing : JUnit 5, Mockito
+            Tools & Platforms: Git, GitHub, Linux, IntelliJ IDEA
+            Software Design: Low-Level Design, SOLID Principles, Design Patterns
+
+            EXPERIENCE
+            ----------
+            Backend Developer — TechCorp India
+            Jan 2024 – Present
+            • Built 15+ REST APIs serving 10k+ users/day
+            • Reduced DB query time by 40% via optimization
+            • Implemented JWT auth across 3 microservices
+            • 85% test coverage with JUnit 5 + Mockito
+            • Dockerized services + CI/CD via GitHub Actions
+
+            Java Backend Intern — StartupXYZ
+            Jun 2023 – Dec 2023
+            • Built CRUD APIs with Spring MVC
+            • 80% code coverage with unit tests
+            • Integrated SendGrid email notification system
+
+            EDUCATION
+            ---------
+            B.Tech in Computer Science and Engineering
+            Dronacharya College of Engineering — 2024–2028 | CGPA: 8.2
+
+            PROJECTS
+            --------
+            1. E-Commerce REST API (Spring Boot, MySQL)
+            - JWT auth, RBAC, Stripe integration
+            - 50k+ requests/day in production
+
+            2. URL Shortener (Spring Boot, Redis, Docker)
+            - Redis caching + rate limiting
+
+            3. Chat API (Spring Boot, WebSocket, MySQL)
+            - Real-time messaging with STOMP
+
+            ========================================
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+<template id="tpl-contact">
+    <div class="contact-wrap">
+        <h2>
+            📧 Get in Touch
+        </h2>
+        <div class="contact-items">
+            <div
+                    class="contact-item"
+                    onclick="window.open('mailto:somveerdahiya009@email.com')"
+            >
+                <span class="ci-icon">
+                    ✉️
+                </span>
+                <div>
+                    <div class="ci-label">
+                        Email
+                    </div>
+                    <div class="ci-val">
+                        somveerdahiya009@gmail.com
+                    </div>
+                </div>
+            </div>
+            <div
+                    class="contact-item"
+                    onclick="window.open('www.linkedin.com/in/somveerdahiya2005','_blank')">
+                <span class="ci-icon">
+                    🔗
+                </span>
+                <div>
+                    <div class="ci-label">
+                        LinkedIn
+                    </div>
+                    <div class="ci-val">
+                        linkedin.com/in/somveerdahiya2005
+                    </div>
+                </div>
+            </div>
+            <div
+                    class="contact-item"
+                    onclick="window.open('https://github.com/SomveerDahiya1', '_blank')">
+
+                <span class="ci-icon">
+                    🐙
+                </span>
+
+                <div>
+
+                    <div class="ci-label">
+                        GitHub
+                    </div>
+
+                    <div class="ci-val">
+                        github.com/rahulsharma
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <span class="ci-icon">
+                    📱
+                </span>
+
+                <div>
+
+                    <div class="ci-label">
+                        Phone
+                    </div>
+
+                    <div class="ci-val">
+                        +91-8447771990
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <span class="ci-icon">
+                    📍
+                </span>
+
+                <div>
+
+                    <div class="ci-label">
+                        Location
+                    </div>
+
+                    <div class="ci-val">
+                        India (Open to Remote)
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-msg">
+
+            💬 I'm currently open to full-time backend roles
+            and freelance API projects. Best response time via
+            email — usually within 24 hours. I don't do frontend work 😅
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script src="js/main.js"></script>
+<script src="js/boot.js"></script>
+<script src="js/login.js"></script>
+<script src="js/taskbar.js"></script>
+<script src="js/windows.js"></script>
+<script src="js/interactions.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/desktop.js"></script>
+</body>
+
+</html>

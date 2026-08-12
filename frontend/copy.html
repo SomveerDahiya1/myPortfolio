@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Somveer Dahiya — Portfolio XP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:Tahoma,sans-serif;font-size:11px;overflow:hidden;user-select:none;background:#000;width:100vw;height:100vh}
+
+        /* ── BOOT SCREEN ── */
+        #boot{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.8s}
+        #boot.hide{opacity:0;pointer-events:none}
+        .boot-logo{color:#fff;font-size:38px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+        .boot-logo span{color:#5B9BD5}
+        .boot-tagline{color:#aaa;font-size:12px;margin-bottom:40px;letter-spacing:2px;text-transform:uppercase}
+        .boot-bar-wrap{width:200px;height:8px;border:1px solid #555;border-radius:4px;overflow:hidden;background:#111}
+        .boot-bar{height:100%;width:0;background:linear-gradient(90deg,#1C5FA3,#5B9BD5);border-radius:4px;transition:width 0.4s ease}
+        .boot-text{color:#666;font-size:10px;margin-top:10px;letter-spacing:1px}
+
+        /* ── LOGIN SCREEN ── */
+        #login{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.6s}
+        #login.hide{opacity:0;pointer-events:none}
+        .login-bg{position:absolute;inset:0;background:linear-gradient(180deg,#1a3f6f 0%,#245a9e 40%,#3a7abf 70%,#6fa8d4 100%)}
+        .login-bg::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cellipse cx='200' cy='280' rx='280' ry='120' fill='%2372b04a' opacity='0.6'/%3E%3Cellipse cx='200' cy='300' rx='200' ry='80' fill='%2355a030' opacity='0.8'/%3E%3C/svg%3E") bottom/cover no-repeat}
+        .login-box{position:relative;text-align:center}
+        .login-title{color:#fff;font-size:22px;font-weight:700;text-shadow:1px 1px 3px rgba(0,0,0,0.5);margin-bottom:4px}
+        .login-sub{color:#c8ddf0;font-size:11px;margin-bottom:32px}
+        .login-user{cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:10px}
+        .login-avatar{width:80px;height:80px;border-radius:4px;background:linear-gradient(135deg,#2c5f8a,#4a8fc0);display:flex;align-items:center;justify-content:center;font-size:36px;border:2px solid rgba(255,255,255,0.3);box-shadow:0 4px 20px rgba(0,0,0,0.4);transition:box-shadow 0.2s}
+        .login-avatar:hover{box-shadow:0 4px 30px rgba(91,155,213,0.8)}
+        .login-name{color:#fff;font-size:14px;font-weight:700;text-shadow:1px 1px 2px rgba(0,0,0,0.5)}
+        .login-role{color:#c8ddf0;font-size:10px}
+        .login-hint{color:rgba(255,255,255,0.6);font-size:10px;margin-top:20px;animation:fadepulse 2s infinite}
+        @keyframes fadepulse{0%,100%{opacity:0.6}50%{opacity:1}}
+
+        /* ── DESKTOP ── */
+        #desktop{position:fixed;inset:0;display:none;flex-direction:column}
+        #desktop.show{display:flex}
+        .wallpaper{position:absolute;inset:0;background:linear-gradient(180deg,#1a4f8a 0%,#3a7abf 35%,#5a9fd4 60%,#72b04a 60%,#4a8a2a 100%)}
+        .wallpaper::before{content:'';position:absolute;inset:60% 0 0;background:linear-gradient(180deg,#5a9a35 0%,#3a7020 100%)}
+        .wallpaper::after{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:400px;height:200px;background:radial-gradient(ellipse,rgba(255,255,255,0.15) 0%,transparent 70%);border-radius:50%}
+
+        /* desktop icons */
+        .desktop-icons{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:6px;z-index:10}
+        .dicon{display:flex;flex-direction:column;align-items:center;gap:4px;width:72px;padding:4px;border-radius:3px;cursor:pointer;color:#fff;text-align:center}
+        .dicon:hover{background:rgba(49,106,197,0.4)}
+        .dicon.selected{background:rgba(49,106,197,0.6)}
+        .dicon-img{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:28px;filter:drop-shadow(1px 2px 2px rgba(0,0,0,0.5))}
+        .dicon span{font-size:10px;text-shadow:1px 1px 2px #000;line-height:1.2;word-break:break-word}
+
+        /* ── TASKBAR ── */
+        #taskbar{position:relative;height:30px;background:linear-gradient(180deg,#245fa8 0%,#1a4d8c 8%,#1c5499 50%,#1a4d8c 92%,#2060aa 100%);display:flex;align-items:stretch;z-index:500;flex-shrink:0;margin-top:auto;box-shadow:0 -1px 0 rgba(255,255,255,0.2) inset}
+        #start-btn{display:flex;align-items:center;gap:4px;padding:0 14px 0 8px;background:linear-gradient(180deg,#56a33a 0%,#3a8a1e 8%,#3e9422 45%,#3a8a1e 92%,#56a33a 100%);color:#fff;font-weight:700;font-size:13px;cursor:pointer;border-right:1px solid rgba(0,0,0,0.3);border-radius:0 12px 12px 0;text-shadow:1px 1px 1px rgba(0,0,0,0.4);min-width:100px}
+        #start-btn:hover{background:linear-gradient(180deg,#6ab84a 0%,#4a9a2e 8%,#4ea432 45%,#4a9a2e 92%,#6ab84a 100%)}
+        #start-btn .win-logo{font-size:18px;margin-right:2px}
+        .taskbar-tasks{flex:1;display:flex;align-items:center;gap:3px;padding:3px 4px;overflow:hidden}
+        .task-btn{display:flex;align-items:center;gap:5px;padding:2px 8px;height:22px;background:linear-gradient(180deg,#1a4d8c,#2060aa);border:1px solid rgba(255,255,255,0.25);border-radius:3px;color:#fff;font-size:10px;cursor:pointer;max-width:160px;overflow:hidden;white-space:nowrap}
+        .task-btn:hover,.task-btn.active{background:linear-gradient(180deg,#2060aa,#1a4d8c)}
+        .task-btn .ticon{font-size:14px}
+        .taskbar-tray{display:flex;align-items:center;gap:6px;padding:0 10px;background:linear-gradient(180deg,#0a2d6a,#0e3a88);border-left:1px solid rgba(255,255,255,0.15);font-size:10px;color:#c8ddf0;min-width:80px;justify-content:flex-end}
+        #clock{font-size:10px;color:#fff}
+
+        /* ── START MENU ── */
+        #start-menu{position:absolute;bottom:30px;left:0;width:320px;background:#fff;border-radius:8px 8px 0 0;box-shadow:4px -4px 20px rgba(0,0,0,0.5);display:none;z-index:600;overflow:hidden}
+        #start-menu.show{display:block}
+        .sm-header{background:linear-gradient(90deg,#1a4d8c,#3a7abf);padding:10px 12px;display:flex;align-items:center;gap:10px}
+        .sm-avatar{width:40px;height:40px;border-radius:4px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:22px}
+        .sm-name{color:#fff;font-weight:700;font-size:13px}
+        .sm-role{color:#c8ddf0;font-size:10px}
+        .sm-body{display:flex}
+        .sm-left{flex:1;padding:6px 0;border-right:1px solid #e0e0e0}
+        .sm-right{width:110px;background:#dce7f5;padding:6px 0}
+        .sm-item{display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:11px;color:#000}
+        .sm-item:hover{background:#316ac5;color:#fff}
+        .sm-item .si{font-size:18px;width:22px;text-align:center}
+        .sm-item .si-label{flex:1}
+        .sm-item .si-sub{font-size:9px;color:#666;display:block}
+        .sm-item:hover .si-sub{color:#c8ddf0}
+        .sm-sep{height:1px;background:#e0e0e0;margin:4px 0}
+        .sm-right-title{font-size:9px;font-weight:700;color:#1a4d8c;padding:4px 8px 2px;text-transform:uppercase;letter-spacing:0.5px}
+        .sm-footer{background:#1a4d8c;padding:5px 12px;display:flex;justify-content:flex-end;gap:8px}
+        .sm-footer-btn{display:flex;align-items:center;gap:4px;color:#fff;font-size:10px;cursor:pointer;padding:3px 8px;border-radius:3px}
+        .sm-footer-btn:hover{background:rgba(255,255,255,0.2)}
+
+        /* ── WINDOWS ── */
+        .win{position:absolute;background:#fff;border:2px solid #1a4d8c;border-radius:6px 6px 4px 4px;box-shadow:3px 3px 15px rgba(0,0,0,0.5);display:flex;flex-direction:column;min-width:300px;min-height:200px;z-index:200}
+        .win.active{z-index:300;box-shadow:3px 3px 20px rgba(0,0,0,0.7)}
+        .win-titlebar{background:linear-gradient(180deg,#2060c8 0%,#1a4d8c 50%,#1650a0 100%);padding:4px 6px;display:flex;align-items:center;gap:6px;border-radius:4px 4px 0 0;cursor:move;flex-shrink:0}
+        .win.inactive .win-titlebar{background:linear-gradient(180deg,#7b9ac8 0%,#5a7ab0 100%)}
+        .win-icon{font-size:14px}
+        .win-title{flex:1;color:#fff;font-weight:700;font-size:11px;text-shadow:1px 1px 1px rgba(0,0,0,0.4)}
+        .win-controls{display:flex;gap:2px}
+        .wc-btn{width:21px;height:21px;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;font-weight:700;color:#fff;line-height:1}
+        .wc-min{background:linear-gradient(180deg,#f0c050,#c88010)}
+        .wc-min:hover{background:linear-gradient(180deg,#ffd060,#d89020)}
+        .wc-max{background:linear-gradient(180deg,#50c050,#108010)}
+        .wc-max:hover{background:linear-gradient(180deg,#60d060,#209020)}
+        .wc-cls{background:linear-gradient(180deg,#f05050,#c01010)}
+        .wc-cls:hover{background:linear-gradient(180deg,#ff6060,#d02020)}
+        .win-menubar{background:#f0f0f0;border-bottom:1px solid #ccc;padding:2px 6px;display:flex;gap:0;flex-shrink:0}
+        .win-menu-item{padding:2px 8px;font-size:11px;cursor:pointer;border-radius:2px}
+        .win-menu-item:hover{background:#316ac5;color:#fff}
+        .win-content{flex:1;overflow:auto;background:#fff;font-size:11px}
+        .win-statusbar{background:#e0e8f8;border-top:1px solid #b0c0d8;padding:2px 8px;font-size:10px;color:#444;flex-shrink:0;border-radius:0 0 3px 3px}
+
+        /* ── WINDOW CONTENTS ── */
+        /* About */
+        .about-wrap{display:flex;gap:0;height:100%}
+        .about-sidebar{width:140px;background:linear-gradient(180deg,#dce7f5,#c0d4ec);border-right:1px solid #b0c0d8;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0}
+        .about-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#1a4d8c,#3a7abf);display:flex;align-items:center;justify-content:center;font-size:40px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+        .about-name{font-weight:700;font-size:12px;text-align:center;color:#1a2a4a}
+        .about-title{font-size:9px;color:#4a6a9a;text-align:center}
+        .sidebar-links{display:flex;flex-direction:column;gap:4px;width:100%;margin-top:8px}
+        .slink{display:flex;align-items:center;gap:5px;font-size:10px;color:#1a4d8c;cursor:pointer;padding:3px 6px;border-radius:3px}
+        .slink:hover{background:rgba(49,106,197,0.15)}
+        .about-main{flex:1;padding:16px;overflow:auto}
+        .about-main h2{font-size:14px;color:#1a4d8c;border-bottom:2px solid #316ac5;padding-bottom:4px;margin-bottom:10px}
+        .about-main p{color:#333;line-height:1.6;margin-bottom:10px;font-size:11px}
+        .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+        .info-item{background:#f0f5ff;border:1px solid #c0d0e8;border-radius:3px;padding:6px 8px}
+        .info-item label{display:block;font-size:9px;color:#4a6a9a;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px}
+        .info-item span{font-size:11px;color:#1a2a4a;font-weight:700}
+
+        /* Skills / Explorer */
+        .explorer-wrap{display:flex;height:100%}
+        .explorer-tree{width:150px;background:#f8f8f8;border-right:1px solid #ccc;padding:8px 4px;overflow:auto;flex-shrink:0}
+        .tree-item{display:flex;align-items:center;gap:4px;padding:3px 6px;cursor:pointer;border-radius:2px;font-size:11px}
+        .tree-item:hover{background:#dce7f5}
+        .tree-item.active{background:#316ac5;color:#fff}
+        .tree-icon{font-size:14px}
+        .explorer-main{flex:1;padding:10px;overflow:auto;background:#fff}
+        .skill-section h3{font-size:12px;color:#1a4d8c;margin-bottom:8px;padding-bottom:3px;border-bottom:1px solid #dce7f5}
+        .skill-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+        .pill{padding:3px 10px;border-radius:10px;font-size:10px;font-weight:700;border:1px solid}
+        .pill.java{background:#fff3e0;color:#e65100;border-color:#ffb74d}
+        .pill.spring{background:#e8f5e9;color:#1b5e20;border-color:#66bb6a}
+        .pill.db{background:#e3f2fd;color:#0d47a1;border-color:#64b5f6}
+        .pill.devops{background:#f3e5f5;color:#4a148c;border-color:#ba68c8}
+        .pill.test{background:#fce4ec;color:#880e4f;border-color:#f48fb1}
+        .pill.api{background:#e0f2f1;color:#004d40;border-color:#4db6ac}
+        .xp-bar-wrap{margin-bottom:8px}
+        .xp-bar-label{display:flex;justify-content:space-between;margin-bottom:2px;font-size:10px;color:#444}
+        .xp-bar{height:12px;background:#e0e8f0;border-radius:6px;overflow:hidden;border:1px solid #c0d0e0}
+        .xp-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#1a4d8c,#5B9BD5);transition:width 0.5s}
+
+        /* Projects */
+        .projects-wrap{padding:12px;overflow:auto}
+        .proj-card{border:1px solid #c0d0e0;border-radius:4px;margin-bottom:10px;overflow:hidden}
+        .proj-header{background:linear-gradient(90deg,#dce7f5,#eef3fa);padding:8px 12px;display:flex;align-items:center;gap:8px;cursor:pointer}
+        .proj-icon{font-size:18px}
+        .proj-name{font-weight:700;font-size:12px;color:#1a2a4a;flex:1}
+        .proj-status{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700}
+        .status-live{background:#c8e6c9;color:#1b5e20}
+        .status-api{background:#bbdefb;color:#0d47a1}
+        .proj-body{padding:10px 12px;background:#fafcff;border-top:1px solid #e0e8f0;display:none}
+        .proj-body.open{display:block}
+        .proj-body p{font-size:11px;color:#333;margin-bottom:8px;line-height:1.6}
+        .proj-tech{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+        .proj-links-row{display:flex;gap:8px}
+        .proj-link{font-size:10px;color:#1a4d8c;cursor:pointer;text-decoration:underline}
+
+        /* Experience */
+        .exp-wrap{padding:12px;overflow:auto}
+        .exp-card{border-left:3px solid #316ac5;padding:8px 12px;margin-bottom:12px;background:#f8fbff;border-radius:0 4px 4px 0}
+        .exp-date-badge{display:inline-block;background:#316ac5;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;margin-bottom:5px}
+        .exp-card h3{font-size:12px;color:#1a2a4a;font-weight:700;margin-bottom:2px}
+        .exp-company-name{font-size:10px;color:#316ac5;margin-bottom:6px;font-weight:700}
+        .exp-card ul{padding-left:14px}
+        .exp-card li{font-size:10px;color:#444;margin-bottom:3px;line-height:1.5}
+
+        /* Contact */
+        .contact-wrap{padding:16px;overflow:auto}
+        .contact-wrap h2{font-size:14px;color:#1a4d8c;margin-bottom:14px}
+        .contact-items{display:flex;flex-direction:column;gap:8px}
+        .contact-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#f0f5ff;border:1px solid #c0d0e0;border-radius:4px;cursor:pointer;transition:background 0.15s}
+        .contact-item:hover{background:#dce7f5}
+        .contact-item .ci-icon{font-size:22px;width:30px;text-align:center}
+        .contact-item .ci-label{font-size:9px;color:#4a6a9a;text-transform:uppercase}
+        .contact-item .ci-val{font-size:12px;color:#1a2a4a;font-weight:700}
+        .contact-msg{margin-top:14px;padding:10px;background:#fffbf0;border:1px solid #e8d080;border-radius:4px;font-size:11px;color:#5a4a00;line-height:1.6}
+
+        /* Notepad (Resume) */
+        .notepad-wrap{height:100%;display:flex;flex-direction:column}
+        .notepad-toolbar{background:#f0f0f0;border-bottom:1px solid #ccc;padding:3px 8px;display:flex;gap:6px;flex-shrink:0}
+        .notepad-tool{padding:2px 8px;background:#e0e0e0;border:1px solid #aaa;font-size:10px;cursor:pointer;border-radius:2px}
+        .notepad-tool:hover{background:#d0d0d0}
+        .notepad-body{flex:1;padding:16px 20px;font-family:'Courier New',monospace;font-size:11px;line-height:1.8;overflow:auto;white-space:pre-wrap;color:#111;background:#fff}
+
+        /* scrollbar */
+        ::-webkit-scrollbar{width:8px;height:8px}
+        ::-webkit-scrollbar-track{background:#e0e8f0}
+        ::-webkit-scrollbar-thumb{background:#8ab0d8;border-radius:4px}
+        ::-webkit-scrollbar-thumb:hover{background:#5a88b8}
+
+        /* notification */
+        .notif{position:absolute;bottom:34px;right:0;background:#1a4d8c;border:1px solid #5B9BD5;border-radius:4px 4px 0 0;padding:8px 12px;width:220px;box-shadow:-2px -2px 10px rgba(0,0,0,0.3);animation:slideup 0.3s ease;z-index:700}
+        @keyframes slideup{from{transform:translateY(10px);opacity:0}to{transform:translateY(0);opacity:1}}
+        .notif-title{color:#fff;font-weight:700;font-size:11px;margin-bottom:3px}
+        .notif-body{color:#c8ddf0;font-size:10px}
+
+        /* tooltip */
+        .tooltip-wrap{position:absolute;bottom:34px;background:#ffffcc;border:1px solid #888;padding:3px 6px;font-size:10px;color:#000;white-space:nowrap;pointer-events:none;z-index:800;border-radius:2px;display:none}
+    </style>
+</head>
+<body>
+
+<!-- BOOT -->
+<div id="boot">
+    <div class="boot-logo">Java<span>OS</span></div>
+    <div class="boot-tagline">Backend Developer Edition</div>
+    <div class="boot-bar-wrap"><div class="boot-bar" id="boot-bar"></div></div>
+    <div class="boot-text" id="boot-text">Loading...</div>
+</div>
+
+<!-- LOGIN -->
+<div id="login">
+    <div class="login-bg"></div>
+    <div class="login-box">
+        <div class="login-title">JavaOS Professional</div>
+        <div class="login-sub">Backend Developer Edition</div>
+        <div class="login-user" id="login-user">
+            <div class="login-avatar">👨‍💻</div>
+            <div class="login-name">Somveer Dahiya</div>
+            <div class="login-role">Java Backend Developer</div>
+        </div>
+        <div class="login-hint">Click to log in</div>
+    </div>
+</div>
+
+<!-- DESKTOP -->
+<div id="desktop">
+    <div class="wallpaper"></div>
+
+    <div class="desktop-icons" id="desktop-icons">
+        <div class="dicon" data-win="about" ondblclick="openWin('about')">
+            <div class="dicon-img">👤</div><span>About Me</span>
+        </div>
+        <div class="dicon" data-win="skills" ondblclick="openWin('skills')">
+            <div class="dicon-img">🛠️</div><span>Skills</span>
+        </div>
+        <div class="dicon" data-win="projects" ondblclick="openWin('projects')">
+            <div class="dicon-img">📁</div><span>Projects</span>
+        </div>
+        <div class="dicon" data-win="experience" ondblclick="openWin('experience')">
+            <div class="dicon-img">💼</div><span>Experience</span>
+        </div>
+        <div class="dicon" data-win="resume" ondblclick="openWin('resume')">
+            <div class="dicon-img">📄</div><span>Resume.txt</span>
+        </div>
+        <div class="dicon" data-win="contact" ondblclick="openWin('contact')">
+            <div class="dicon-img">📧</div><span>Contact</span>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <div id="start-btn" onclick="toggleStart()">
+            <span class="win-logo">☕</span> Start
+        </div>
+        <div class="taskbar-tasks" id="taskbar-tasks"></div>
+        <div class="taskbar-tray">
+            <span title="Java 17">☕</span>
+            <span title="Spring Boot">🍃</span>
+            <div id="clock">12:00 PM</div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu">
+        <div class="sm-header">
+            <div class="sm-avatar">👨‍💻</div>
+            <div>
+                <div class="sm-name">Somveer Dahiya</div>
+                <div class="sm-role">Backend Developer</div>
+            </div>
+        </div>
+        <div class="sm-body">
+            <div class="sm-left">
+                <div class="sm-item" onclick="openWin('about');toggleStart()"><span class="si">👤</span><div><span class="si-label">About Me</span><span class="si-sub">Who I am</span></div></div>
+                <div class="sm-item" onclick="openWin('skills');toggleStart()"><span class="si">🛠️</span><div><span class="si-label">Skills</span><span class="si-sub">Tech stack</span></div></div>
+                <div class="sm-item" onclick="openWin('projects');toggleStart()"><span class="si">📁</span><div><span class="si-label">Projects</span><span class="si-sub">My work</span></div></div>
+                <div class="sm-item" onclick="openWin('experience');toggleStart()"><span class="si">💼</span><div><span class="si-label">Experience</span><span class="si-sub">Work history</span></div></div>
+                <div class="sm-sep"></div>
+                <div class="sm-item" onclick="openWin('resume');toggleStart()"><span class="si">📄</span><div><span class="si-label">Resume.txt</span><span class="si-sub">Open in Notepad</span></div></div>
+                <div class="sm-item" onclick="openWin('contact');toggleStart()"><span class="si">📧</span><div><span class="si-label">Contact</span><span class="si-sub">Get in touch</span></div></div>
+            </div>
+            <div class="sm-right">
+                <div class="sm-right-title">Quick Links</div>
+                <div class="sm-item" onclick="window.open('https://github.com','_blank')"><span class="si">🐙</span><span class="si-label" style="font-size:10px">GitHub</span></div>
+                <div class="sm-item" onclick="window.open('https://linkedin.com','_blank')"><span class="si">🔗</span><span class="si-label" style="font-size:10px">LinkedIn</span></div>
+            </div>
+        </div>
+        <div class="sm-footer">
+            <div class="sm-footer-btn" onclick="location.reload()">🔄 Restart</div>
+            <div class="sm-footer-btn" onclick="location.reload()">⏻ Log Off</div>
+        </div>
+    </div>
+
+    <!-- Notification bubble -->
+    <div class="notif" id="notif" style="display:none;right:0;position:fixed;bottom:30px">
+        <div class="notif-title">☕ Spring Boot Started</div>
+        <div class="notif-body">Portfolio loaded in 0.3s on port 8080</div>
+    </div>
+</div>
+
+<!-- WINDOW TEMPLATES -->
+<!-- About -->
+<template id="tpl-about">
+    <div class="about-wrap">
+        <div class="about-sidebar">
+            <div class="about-avatar">👨‍💻</div>
+            <div class="about-name">Somveer Dahiya</div>
+            <div class="about-title">Java Backend Developer</div>
+            <div class="sidebar-links">
+                <div class="slink">📍 India</div>
+                <div class="slink" onclick="openWin('contact')">📧 Contact</div>
+                <div class="slink" onclick="openWin('resume')">📄 Resume</div>
+            </div>
+        </div>
+        <div class="about-main">
+            <h2>👋 Hello, World!</h2>
+            <p>I'm a Backend Developer specializing in <strong>Java</strong> and <strong>Spring Boot</strong>. I build scalable REST APIs, microservices, and database-driven systems.</p>
+            <p>I don't do CSS — and I'm proud of it. My controllers are clean, my services are tested, and my SQL queries are indexed. I believe in writing code that other developers enjoy reading.</p>
+            <p>When I'm not building APIs, I'm probably debugging a Hibernate lazy-loading issue or arguing about why tabs are better than spaces.</p>
+            <div class="info-grid">
+                <div class="info-item"><label>Experience</label><span>2+ Years</span></div>
+                <div class="info-item"><label>Primary Language</label><span>Java 17</span></div>
+                <div class="info-item"><label>Framework</label><span>Spring Boot</span></div>
+                <div class="info-item"><label>Availability</label><span>Open to Work</span></div>
+                <div class="info-item"><label>Preferred IDE</label><span>IntelliJ IDEA</span></div>
+                <div class="info-item"><label>Favorite DB</label><span>MySQL</span></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Skills -->
+<template id="tpl-skills">
+    <div class="explorer-wrap">
+        <div class="explorer-tree">
+            <div class="tree-item active" onclick="showSkillSection('core')"><span class="tree-icon">📂</span>Core Java</div>
+            <div class="tree-item" onclick="showSkillSection('spring')"><span class="tree-icon">📁</span>Spring</div>
+            <div class="tree-item" onclick="showSkillSection('database')"><span class="tree-icon">📁</span>Databases</div>
+            <div class="tree-item" onclick="showSkillSection('devops')"><span class="tree-icon">📁</span>DevOps</div>
+            <div class="tree-item" onclick="showSkillSection('testing')"><span class="tree-icon">📁</span>Testing</div>
+        </div>
+        <div class="explorer-main" id="skills-main">
+            <div id="section-core" class="skill-section">
+                <h3>Core Java</h3>
+                <div class="skill-pills">
+                    <span class="pill java">Java 17</span><span class="pill java">OOP</span><span class="pill java">Collections</span><span class="pill java">Streams API</span><span class="pill java">Multithreading</span><span class="pill java">Generics</span><span class="pill java">Lambda</span>
+                </div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Java 17</span><span>90%</span></div><div class="xp-bar"><div class="xp-fill" style="width:90%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Data Structures</span><span>80%</span></div><div class="xp-bar"><div class="xp-fill" style="width:80%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Multithreading</span><span>70%</span></div><div class="xp-bar"><div class="xp-fill" style="width:70%"></div></div></div>
+            </div>
+            <div id="section-spring" class="skill-section" style="display:none">
+                <h3>Spring Ecosystem</h3>
+                <div class="skill-pills">
+                    <span class="pill spring">Spring Boot</span><span class="pill spring">Spring MVC</span><span class="pill spring">Spring Security</span><span class="pill spring">Spring Data JPA</span><span class="pill spring">Hibernate</span><span class="pill spring">Spring Cloud</span>
+                </div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Spring Boot</span><span>88%</span></div><div class="xp-bar"><div class="xp-fill" style="width:88%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Spring Security</span><span>75%</span></div><div class="xp-bar"><div class="xp-fill" style="width:75%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Hibernate/JPA</span><span>82%</span></div><div class="xp-bar"><div class="xp-fill" style="width:82%"></div></div></div>
+            </div>
+            <div id="section-database" class="skill-section" style="display:none">
+                <h3>Databases</h3>
+                <div class="skill-pills">
+                    <span class="pill db">MySQL</span><span class="pill db">PostgreSQL</span><span class="pill db">Redis</span><span class="pill db">H2</span><span class="pill db">SQL</span>
+                </div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>MySQL</span><span>85%</span></div><div class="xp-bar"><div class="xp-fill" style="width:85%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>PostgreSQL</span><span>72%</span></div><div class="xp-bar"><div class="xp-fill" style="width:72%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Redis</span><span>65%</span></div><div class="xp-bar"><div class="xp-fill" style="width:65%"></div></div></div>
+            </div>
+            <div id="section-devops" class="skill-section" style="display:none">
+                <h3>DevOps & Build Tools</h3>
+                <div class="skill-pills">
+                    <span class="pill devops">Docker</span><span class="pill devops">Maven</span><span class="pill devops">Git</span><span class="pill devops">GitHub Actions</span><span class="pill devops">Linux</span>
+                </div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Docker</span><span>75%</span></div><div class="xp-bar"><div class="xp-fill" style="width:75%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Maven</span><span>85%</span></div><div class="xp-bar"><div class="xp-fill" style="width:85%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Git</span><span>88%</span></div><div class="xp-bar"><div class="xp-fill" style="width:88%"></div></div></div>
+            </div>
+            <div id="section-testing" class="skill-section" style="display:none">
+                <h3>Testing</h3>
+                <div class="skill-pills">
+                    <span class="pill test">JUnit 5</span><span class="pill test">Mockito</span><span class="pill test">Integration Tests</span><span class="pill test">Testcontainers</span>
+                </div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>JUnit 5</span><span>80%</span></div><div class="xp-bar"><div class="xp-fill" style="width:80%"></div></div></div>
+                <div class="xp-bar-wrap"><div class="xp-bar-label"><span>Mockito</span><span>78%</span></div><div class="xp-bar"><div class="xp-fill" style="width:78%"></div></div></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Projects -->
+<template id="tpl-projects">
+    <div class="projects-wrap">
+        <div class="proj-card">
+            <div class="proj-header" onclick="toggleProj(this)">
+                <span class="proj-icon">🛒</span>
+                <span class="proj-name">E-Commerce REST API</span>
+                <span class="proj-status status-live">● LIVE</span>
+            </div>
+            <div class="proj-body open">
+                <p>Full-featured product & order management API with JWT auth, role-based access control, Stripe integration, and Swagger docs. Serving 50k+ requests/day in production.</p>
+                <div class="proj-tech"><span class="pill spring">Spring Boot</span><span class="pill db">MySQL</span><span class="pill api">JWT</span><span class="pill devops">Docker</span></div>
+                <div class="proj-links-row"><span class="proj-link">🐙 GitHub</span><span class="proj-link">📖 Docs</span></div>
+            </div>
+        </div>
+        <div class="proj-card">
+            <div class="proj-header" onclick="toggleProj(this)">
+                <span class="proj-icon">🎓</span>
+                <span class="proj-name">Student Management System</span>
+                <span class="proj-status status-api">● API</span>
+            </div>
+            <div class="proj-body">
+                <p>CRUD API for managing students, courses, and grades. Includes pagination, sorting, filtering, and CSV export. Built with Spring Data JPA and Hibernate.</p>
+                <div class="proj-tech"><span class="pill spring">Spring Boot</span><span class="pill java">Hibernate</span><span class="pill db">PostgreSQL</span></div>
+                <div class="proj-links-row"><span class="proj-link">🐙 GitHub</span></div>
+            </div>
+        </div>
+        <div class="proj-card">
+            <div class="proj-header" onclick="toggleProj(this)">
+                <span class="proj-icon">🔗</span>
+                <span class="proj-name">URL Shortener Microservice</span>
+                <span class="proj-status status-live">● LIVE</span>
+            </div>
+            <div class="proj-body">
+                <p>High-performance URL shortener with Redis caching, rate limiting, and analytics. Clean microservice architecture with Docker Compose and CI/CD pipeline.</p>
+                <div class="proj-tech"><span class="pill spring">Spring Boot</span><span class="pill db">Redis</span><span class="pill devops">Docker</span><span class="pill test">JUnit 5</span></div>
+                <div class="proj-links-row"><span class="proj-link">🐙 GitHub</span></div>
+            </div>
+        </div>
+        <div class="proj-card">
+            <div class="proj-header" onclick="toggleProj(this)">
+                <span class="proj-icon">💬</span>
+                <span class="proj-name">Chat API (WebSocket)</span>
+                <span class="proj-status status-api">● API</span>
+            </div>
+            <div class="proj-body">
+                <p>Real-time messaging backend using Spring WebSocket and STOMP. Supports chat rooms, private messaging, and message persistence to MySQL.</p>
+                <div class="proj-tech"><span class="pill spring">Spring Boot</span><span class="pill api">WebSocket</span><span class="pill db">MySQL</span></div>
+                <div class="proj-links-row"><span class="proj-link">🐙 GitHub</span></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Experience -->
+<template id="tpl-experience">
+    <div class="exp-wrap">
+        <div class="exp-card">
+            <span class="exp-date-badge">Jan 2024 – Present</span>
+            <h3>Backend Developer</h3>
+            <div class="exp-company-name">// TechCorp India Pvt. Ltd.</div>
+            <ul>
+                <li>Built and maintained 15+ REST APIs using Spring Boot serving 10,000+ daily users</li>
+                <li>Reduced average DB query time by 40% through Hibernate optimization and proper indexing</li>
+                <li>Implemented JWT-based authentication and Spring Security across 3 microservices</li>
+                <li>Wrote comprehensive unit and integration tests (JUnit 5 + Mockito), 85% code coverage</li>
+                <li>Containerized services with Docker; configured CI/CD via GitHub Actions</li>
+            </ul>
+        </div>
+        <div class="exp-card">
+            <span class="exp-date-badge">Jun 2023 – Dec 2023</span>
+            <h3>Java Backend Intern</h3>
+            <div class="exp-company-name">// StartupXYZ</div>
+            <ul>
+                <li>Developed CRUD APIs for internal admin panel using Spring MVC + Thymeleaf</li>
+                <li>Wrote 60+ unit tests with JUnit 5 and Mockito achieving 80% code coverage</li>
+                <li>Deployed services on Docker and set up basic GitHub Actions pipeline</li>
+                <li>Integrated third-party email service (SendGrid) for notification system</li>
+            </ul>
+        </div>
+        <div class="exp-card">
+            <span class="exp-date-badge" style="background:#5a7ab0">2020 – 2023</span>
+            <h3>B.Tech — Computer Science</h3>
+            <div class="exp-company-name">// Dronacharya College of Engineering,India</div>
+            <ul>
+                <li>CGPA: 8.2/10</li>
+                <li>Final Year Project: Library Management System (Spring Boot + MySQL)</li>
+                <li>Data Structures, DBMS, Operating Systems, Computer Networks</li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+<!-- Resume -->
+<template id="tpl-resume">
+    <div class="notepad-wrap">
+        <div class="notepad-toolbar">
+            <span class="notepad-tool">File</span>
+            <span class="notepad-tool">Edit</span>
+            <span class="notepad-tool">Format</span>
+            <span class="notepad-tool" onclick="window.print()">Print</span>
+        </div>
+        <div class="notepad-body">
+            ========================================
+            RAHUL SHARMA — Backend Developer
+            Java | Spring Boot | REST APIs
+            ========================================
+
+            CONTACT
+            -------
+            Email    : somveerdahiya009@gmail.com
+            Phone    : +91-8447771990
+            LinkedIn : linkedin.com/in/somveerdahiya2005
+            GitHub   : github.com/SomveerDahiya1
+            Location : India
+
+            SUMMARY
+            -------
+            Backend Developer with 2+ years of experience
+            building scalable REST APIs and microservices
+            using Java 17 and Spring Boot. Strong in
+            database design, API security, and clean code.
+            I don't do CSS — my controllers are clean and
+            my endpoints never return 500s.
+
+            TECH STACK
+            ----------
+            Languages   : Java(Core & Advanced), SQL
+            Frameworks & Tech :Spring Core, Spring Boot, RESTful APIs
+            Core CS Concepts: DSA , Object-Oriented Programming, Operating Systems, DBMS
+            Database & ORM  : MySQL, PostgreSQL, Redis , Hibernate
+            Cloud & DevOps: AWS (EC2, Lambda, S3, IAM), Docker
+            Testing : JUnit 5, Mockito
+            Tools & Platforms: Git, GitHub, Linux, IntelliJ IDEA
+            Software Design: Low-Level Design, SOLID Principles, Design Patterns
+
+            EXPERIENCE
+            ----------
+            Backend Developer — TechCorp India
+            Jan 2024 – Present
+            • Built 15+ REST APIs serving 10k+ users/day
+            • Reduced DB query time by 40% via optimization
+            • Implemented JWT auth across 3 microservices
+            • 85% test coverage with JUnit 5 + Mockito
+            • Dockerized services + CI/CD via GitHub Actions
+
+            Java Backend Intern — StartupXYZ
+            Jun 2023 – Dec 2023
+            • Built CRUD APIs with Spring MVC
+            • 80% code coverage with unit tests
+            • Integrated SendGrid email notification system
+
+            EDUCATION
+            ---------
+            B.Tech in Computer Science and Engineering
+            Dronacharya College of Engineering — 2024–2028 | CGPA: 8.2
+
+            PROJECTS
+            --------
+            1. E-Commerce REST API (Spring Boot, MySQL)
+            - JWT auth, RBAC, Stripe integration
+            - 50k+ requests/day in production
+
+            2. URL Shortener (Spring Boot, Redis, Docker)
+            - Redis caching + rate limiting
+
+            3. Chat API (Spring Boot, WebSocket, MySQL)
+            - Real-time messaging with STOMP
+
+            ========================================
+        </div>
+    </div>
+</template>
+
+<!-- Contact -->
+<template id="tpl-contact">
+    <div class="contact-wrap">
+        <h2>📧 Get in Touch</h2>
+        <div class="contact-items">
+            <div class="contact-item" onclick="window.open('mailto:somveerdahiya009@email.com')">
+                <span class="ci-icon">✉️</span>
+                <div><div class="ci-label">Email</div><div class="ci-val">somveerdahiya009@gmail.com</div></div>
+            </div>
+            <div class="contact-item" onclick="window.open('www.linkedin.com/in/somveerdahiya2005','_blank')">
+                <span class="ci-icon">🔗</span>
+                <div><div class="ci-label">LinkedIn</div><div class="ci-val">linkedin.com/in/somveerdahiya2005</div></div>
+            </div>
+            <div class="contact-item" onclick="window.open('https://github.com/SomveerDahiya1,','_blank')">
+                <span class="ci-icon">🐙</span>
+                <div><div class="ci-label">GitHub</div><div class="ci-val">github.com/rahulsharma</div></div>
+            </div>
+            <div class="contact-item">
+                <span class="ci-icon">📱</span>
+                <div><div class="ci-label">Phone</div><div class="ci-val">+91-8447771990</div></div>
+            </div>
+            <div class="contact-item">
+                <span class="ci-icon">📍</span>
+                <div><div class="ci-label">Location</div><div class="ci-val">India (Open to Remote)</div></div>
+            </div>
+        </div>
+        <div class="contact-msg">
+            💬 I'm currently open to full-time backend roles and freelance API projects. Best response time via email — usually within 24 hours. I don't do frontend work 😅
+        </div>
+    </div>
+</template>
+
+<script>
+    // ── WINDOW CONFIG ──
+    const winConfig = {
+        about:      {title:'About Me',       icon:'👤', w:520, h:360, tpl:'tpl-about',      menu:['File','View','Help'], status:'Properties loaded'},
+        skills:     {title:'Skills Explorer',icon:'🛠️', w:520, h:380, tpl:'tpl-skills',     menu:['File','View','Help'], status:'6 items'},
+        projects:   {title:'My Projects',   icon:'📁', w:480, h:380, tpl:'tpl-projects',   menu:['File','View','Help'], status:'4 projects found'},
+        experience: {title:'Experience',    icon:'💼', w:460, h:360, tpl:'tpl-experience', menu:['File','View'], status:'3 entries'},
+        resume:     {title:'Resume.txt — Notepad',icon:'📄', w:460, h:400, tpl:'tpl-resume', menu:['File','Edit','Format','Help'], status:''},
+        contact:    {title:'Contact Me',    icon:'📧', w:380, h:360, tpl:'tpl-contact',    menu:['File','Help'], status:'Ready'},
+    };
+
+    let zTop = 300, activeWin = null;
+    const openWins = {};
+
+    // ── BOOT SEQUENCE ──
+    const bootMessages = ['Loading Spring context...','Initializing Hibernate...','Scanning @Components...','Mapping @RestControllers...','Starting embedded Tomcat...','Ready on port 8080!'];
+    let bootStep = 0;
+    function bootStep_() {
+        if(bootStep >= bootMessages.length) {
+            document.getElementById('boot').classList.add('hide');
+            setTimeout(()=>{document.getElementById('boot').style.display='none';},800);
+            return;
+        }
+        const pct = ((bootStep+1)/bootMessages.length)*100;
+        document.getElementById('boot-bar').style.width = pct+'%';
+        document.getElementById('boot-text').textContent = bootMessages[bootStep];
+        bootStep++;
+        setTimeout(bootStep_, bootStep===bootMessages.length?600:450);
+    }
+    setTimeout(bootStep_, 600);
+
+    // ── LOGIN ──
+    document.getElementById('login-user').addEventListener('click', ()=>{
+        const login = document.getElementById('login');
+        login.classList.add('hide');
+        setTimeout(()=>{
+            login.style.display='none';
+            const desk = document.getElementById('desktop');
+            desk.classList.add('show');
+            // show welcome notification
+            const notif = document.getElementById('notif');
+            notif.style.display='block';
+            setTimeout(()=>notif.style.display='none', 4000);
+            // open about on login
+            setTimeout(()=>openWin('about'), 600);
+        }, 600);
+    });
+
+    // ── CLOCK ──
+    function updateClock(){
+        const d=new Date(); let h=d.getHours(),m=d.getMinutes(),ampm=h>=12?'PM':'AM';
+        h=h%12||12; document.getElementById('clock').textContent=h+':'+(m<10?'0':'')+m+' '+ampm;
+    }
+    updateClock(); setInterval(updateClock,10000);
+
+    // ── START MENU ──
+    let startOpen=false;
+    function toggleStart(){startOpen=!startOpen;document.getElementById('start-menu').classList.toggle('show',startOpen);}
+    document.addEventListener('click',e=>{if(!e.target.closest('#start-menu')&&!e.target.closest('#start-btn')){if(startOpen){toggleStart();}}});
+
+    // ── OPEN WINDOW ──
+    function openWin(id){
+        if(openWins[id]){focusWin(id);return;}
+        const cfg=winConfig[id];
+        const tpl=document.getElementById(cfg.tpl);
+        const win=document.createElement('div');
+        win.className='win active';
+        win.id='win-'+id;
+        win.style.cssText=`width:${cfg.w}px;height:${cfg.h}px;left:${80+Object.keys(openWins).length*24}px;top:${60+Object.keys(openWins).length*20}px;z-index:${++zTop}`;
+
+        const menuHTML = cfg.menu.map(m=>`<span class="win-menu-item">${m}</span>`).join('');
+        win.innerHTML=`
+    <div class="win-titlebar">
+      <span class="win-icon">${cfg.icon}</span>
+      <span class="win-title">${cfg.title}</span>
+      <div class="win-controls">
+        <div class="wc-btn wc-min" onclick="minWin('${id}')">_</div>
+        <div class="wc-btn wc-max" onclick="maxWin('${id}')">□</div>
+        <div class="wc-btn wc-cls" onclick="closeWin('${id}')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar">${menuHTML}</div>
+    <div class="win-content" id="wc-${id}"></div>
+    ${cfg.status?`<div class="win-statusbar">${cfg.status}</div>`:''}
+  `;
+        document.getElementById('desktop').appendChild(win);
+        document.getElementById('wc-'+id).appendChild(tpl.content.cloneNode(true));
+        makeDraggable(win, win.querySelector('.win-titlebar'));
+        openWins[id]=win;
+        addTaskBtn(id, cfg);
+        setActiveWin(id);
+    }
+
+    function closeWin(id){
+        const w=openWins[id]; if(!w)return;
+        w.remove(); delete openWins[id];
+        removeTaskBtn(id);
+        if(activeWin===id) activeWin=null;
+    }
+
+    let minimized={};
+    function minWin(id){
+        const w=openWins[id]; if(!w)return;
+        w.style.display='none'; minimized[id]=true;
+        const tb=document.querySelector(`.task-btn[data-id="${id}"]`);
+        if(tb)tb.classList.remove('active');
+    }
+    function maxWin(id){
+        const w=openWins[id]; if(!w)return;
+        if(w._maxed){Object.assign(w.style,w._prev);w._maxed=false;}
+        else{w._prev={left:w.style.left,top:w.style.top,width:w.style.width,height:w.style.height};
+            Object.assign(w.style,{left:'0',top:'0',width:'100vw',height:'calc(100vh - 30px)'});w._maxed=true;}
+    }
+    function focusWin(id){
+        const w=openWins[id]; if(!w)return;
+        if(minimized[id]){w.style.display='flex';delete minimized[id];}
+        setActiveWin(id);
+    }
+
+    function setActiveWin(id){
+        if(activeWin&&openWins[activeWin]){
+            openWins[activeWin].classList.remove('active');
+            openWins[activeWin].classList.add('inactive');
+            const prevTb=document.querySelector(`.task-btn[data-id="${activeWin}"]`);
+            if(prevTb)prevTb.classList.remove('active');
+        }
+        activeWin=id;
+        const w=openWins[id]; if(!w)return;
+        w.classList.add('active'); w.classList.remove('inactive');
+        w.style.zIndex=++zTop;
+        const tb=document.querySelector(`.task-btn[data-id="${id}"]`);
+        if(tb)tb.classList.add('active');
+    }
+
+    // ── TASKBAR BUTTONS ──
+    function addTaskBtn(id, cfg){
+        const tb=document.getElementById('taskbar-tasks');
+        const btn=document.createElement('div');
+        btn.className='task-btn active'; btn.dataset.id=id;
+        btn.innerHTML=`<span class="ticon">${cfg.icon}</span><span>${cfg.title}</span>`;
+        btn.onclick=()=>{
+            if(activeWin===id&&openWins[id]&&openWins[id].style.display!=='none')minWin(id);
+            else focusWin(id);
+        };
+        tb.appendChild(btn);
+    }
+    function removeTaskBtn(id){
+        const btn=document.querySelector(`.task-btn[data-id="${id}"]`);
+        if(btn)btn.remove();
+    }
+
+    // ── DRAG ──
+    function makeDraggable(win, handle){
+        let mx,my,ox,oy,dragging=false;
+        handle.addEventListener('mousedown',e=>{
+            if(e.target.classList.contains('wc-btn'))return;
+            dragging=true; mx=e.clientX; my=e.clientY;
+            ox=win.offsetLeft; oy=win.offsetTop;
+            setActiveWin(win.id.replace('win-',''));
+            e.preventDefault();
+        });
+        document.addEventListener('mousemove',e=>{
+            if(!dragging)return;
+            win.style.left=(ox+e.clientX-mx)+'px';
+            win.style.top=Math.max(0,oy+e.clientY-my)+'px';
+        });
+        document.addEventListener('mouseup',()=>dragging=false);
+        win.addEventListener('mousedown',()=>setActiveWin(win.id.replace('win-','')));
+    }
+
+    // ── SKILLS SECTION TOGGLE ──
+    function showSkillSection(id){
+        document.querySelectorAll('.skill-section').forEach(s=>s.style.display='none');
+        document.querySelectorAll('.tree-item').forEach(t=>t.classList.remove('active'));
+        const sec=document.getElementById('section-'+id); if(sec)sec.style.display='block';
+        event.currentTarget.classList.add('active');
+    }
+
+    // ── PROJECT ACCORDION ──
+    function toggleProj(header){
+        const body=header.nextElementSibling;
+        body.classList.toggle('open');
+    }
+
+    // ── DESKTOP ICON CLICK ──
+    document.getElementById('desktop-icons').addEventListener('click',e=>{
+        document.querySelectorAll('.dicon').forEach(d=>d.classList.remove('selected'));
+        const icon=e.target.closest('.dicon'); if(icon)icon.classList.add('selected');
+    });
+    document.getElementById('desktop').addEventListener('click',e=>{
+        if(!e.target.closest('.dicon'))document.querySelectorAll('.dicon').forEach(d=>d.classList.remove('selected'));
+    });
+</script>
+</body>
+</html>

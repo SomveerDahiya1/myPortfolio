@@ -1,0 +1,107 @@
+.win {
+    position: absolute;
+    background: #fff;
+    border: 2px solid #1a4d8c;
+    border-radius: 6px 6px 4px 4px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    min-height: 200px;
+    z-index: 200;
+}
+.win.active {
+    z-index: 300;
+    box-shadow: 3px 3px 20px rgba(0,0,0,0.7);
+}
+.win-titlebar {
+    background: linear-gradient(180deg,#2060c8 0%,#1a4d8c 50%,#1650a0 100%);
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 4px 4px 0 0;
+    cursor: move;
+    flex-shrink: 0;
+}
+.win.inactive .win-titlebar {
+    background: linear-gradient(180deg,#7b9ac8 0%,#5a7ab0 100%);
+}
+.win-icon {
+    font-size: 14px;
+}
+.win-title {
+    flex: 1;
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+}
+.win-controls {
+    display: flex;
+    gap: 2px;
+}
+.wc-btn {
+    width: 21px;
+    height: 21px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+.wc-min {
+    background: linear-gradient(180deg,#f0c050,#c88010);
+}
+.wc-min:hover {
+    background: linear-gradient(180deg,#ffd060,#d89020);
+}
+.wc-max {
+    background: linear-gradient(180deg,#50c050,#108010);
+}
+.wc-max:hover {
+    background: linear-gradient(180deg,#60d060,#209020);
+}
+.wc-cls {
+    background: linear-gradient(180deg,#f05050,#c01010);
+}
+.wc-cls:hover {
+    background: linear-gradient(180deg,#ff6060,#d02020);
+}
+.win-menubar {
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 6px;
+    display: flex;
+    gap: 0;
+    flex-shrink: 0;
+}
+.win-menu-item {
+    padding: 2px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.win-menu-item:hover {
+    background: #316ac5;
+    color: #fff;
+}
+.win-content {
+    flex: 1;
+    overflow: auto;
+    background: #fff;
+    font-size: 11px;
+}
+.win-statusbar {
+    background: #e0e8f8;
+    border-top: 1px solid #b0c0d8;
+    padding: 2px 8px;
+    font-size: 10px;
+    color: #444;
+    flex-shrink: 0;
+    border-radius: 0 0 3px 3px;
+}
