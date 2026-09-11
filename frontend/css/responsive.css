@@ -1,0 +1,93 @@
+@media (max-width: 1200px) {
+    .desktop-icons {
+        grid-template-columns: repeat(1, 72px);
+    }
+    .win {
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 50px);
+    }
+}
+@media (max-width: 800px) {
+    .desktop-icons {
+        grid-template-columns: repeat(2, 72px);
+        grid-auto-flow: row;
+        gap: 6px;
+        padding: 10px;
+    }
+    .taskbar-tasks {
+        min-width: 0;
+    }
+    .task-btn {
+        max-width: 120px;
+    }
+    .task-btn .task-title {
+        display: none;
+    }
+    .taskbar-tray {
+        min-width: 65px;
+        padding: 0 6px;
+    }
+    #start-btn {
+        min-width: 80px;
+        padding: 0 10px 0 6px;
+    }
+    #start-menu {
+        width: min(320px, calc(100vw - 10px));
+    }
+}
+@media (max-width: 500px) {
+    .desktop-icons {
+        grid-template-columns: repeat(3, 72px);
+        grid-auto-rows: 72px;
+        gap: 4px;
+        padding: 6px;
+    }
+    .dicon {
+        width: 64px;
+        height: 64px;
+    }
+    #start-btn {
+        min-width: 70px;
+        font-size: 11px;
+    }
+    #start-btn .win-logo {
+        font-size: 16px;
+    }
+    .taskbar-tray {
+        min-width: 50px;
+        gap: 3px;
+        padding: 0 4px;
+    }
+    .taskbar-tray span {
+        display: none;
+    }
+    #clock {
+        font-size: 9px;
+    }
+    #start-menu {
+        width: calc(100vw - 10px);
+        max-width: 320px;
+    }
+    .sm-right {
+        width: 90px;
+    }
+    .sm-item {
+        padding: 6px 8px;
+    }
+}
+@media (min-width: 501px) and (max-width: 1200px) {
+    .desktop-icons {
+        grid-template-columns: repeat(2, 72px);
+    }
+}
+@media (min-width: 1201px) {
+    .desktop-icons {
+        grid-template-columns: repeat(1, 72px);
+    }
+}
+@media (min-width: 1600px) {
+    .desktop-icons {
+        grid-template-columns: repeat(1, 72px);
+    }
+}
+
