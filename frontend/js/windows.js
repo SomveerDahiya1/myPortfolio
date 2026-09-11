@@ -8,22 +8,25 @@ function openWin(id) {
     const win = document.createElement('div');
     win.className = 'win active';
     win.id = 'win-' + id;
-    win.style.cssText = `width:${cfg.w}px;height:${cfg.h}px;left:${80 + Object.keys(openWins).length * 24}px;top:${60 + Object.keys(openWins).length * 20}px;z-index:${++zTop}`;
+    const desktop = document.getElementById('desktop');
+    const left = (desktop.clientWidth - cfg.w) / 2;
+    const top = (desktop.clientHeight - 30 - cfg.h) / 2;
+    win.style.cssText = `width:${cfg.w}px;height:${cfg.h}px;left:${left}px;top:${top}px;z-index:${++zTop}`;
     const menuHTML = cfg.menu.map(m => `<span class="win-menu-item">${m}</span>`).join('');
     win.innerHTML = `
-        <div class="win-titlebar">
-            <span class="win-icon">${cfg.icon}</span>
-            <span class="win-title">${cfg.title}</span>
-            <div class="win-controls">
-                <div class="wc-btn wc-min" onclick="minWin('${id}')">_</div>
-                <div class="wc-btn wc-max" onclick="maxWin('${id}')">□</div>
-                <div class="wc-btn wc-cls" onclick="closeWin('${id}')">✕</div>
-            </div>
-        </div>
-        <div class="win-menubar">${menuHTML}</div>
-        <div class="win-content" id="wc-${id}"></div>
-        ${cfg.status ? `<div class="win-statusbar">${cfg.status}</div>` : ''}
-    `;
+<div class="win-titlebar">
+    <span class="win-icon">${cfg.icon}</span>
+<span class="win-title">${cfg.title}</span>
+<div class="win-controls">
+    <div class="wc-btn wc-min" onclick="minWin('${id}')">_</div>
+    <div class="wc-btn wc-max" onclick="maxWin('${id}')">□</div>
+    <div class="wc-btn wc-cls" onclick="closeWin('${id}')">✕</div>
+</div>
+</div>
+<div class="win-menubar">${menuHTML}</div>
+<div class="win-content" id="wc-${id}"></div>
+${cfg.status ? `<div class="win-statusbar">${cfg.status}</div>` : ''}
+`;
     document.getElementById('desktop').appendChild(win);
     document.getElementById('wc-' + id).appendChild(tpl.content.cloneNode(true));
     makeDraggable(win, win.querySelector('.win-titlebar'));
@@ -101,3 +104,4 @@ function setActiveWin(id) {
     const tb = document.querySelector(`.task-btn[data-id="${id}"]`);
     if (tb) tb.classList.add('active');
 }
+
