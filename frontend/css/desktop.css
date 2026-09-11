@@ -10,24 +10,10 @@
 .wallpaper {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg,#1a4f8a 0%,#3a7abf 35%,#5a9fd4 60%,#72b04a 60%,#4a8a2a 100%);
-}
-.wallpaper::before {
-    content: '';
-    position: absolute;
-    inset: 60% 0 0;
-    background: linear-gradient(180deg,#5a9a35 0%,#3a7020 100%);
-}
-.wallpaper::after {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 400px;
-    height: 200px;
-    background: radial-gradient(ellipse,rgba(255,255,255,0.15) 0%,transparent 70%);
-    border-radius: 50%;
+    background-image: url('../assets/images/backgrounds/Wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .desktop-icons {
     position: relative;
@@ -189,4 +175,10 @@
 }
 .sm-footer-btn:hover {
     background: rgba(255,255,255,0.2);
+}
+.social-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
