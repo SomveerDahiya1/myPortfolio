@@ -425,3 +425,79 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #5a88b8;
 }
+.certifications-container {
+    padding: 16px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.certifications-header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b5b5b5;
+}
+
+.certifications-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f4e79;
+}
+
+.certifications-subtitle {
+    margin-top: 3px;
+    font-size: 12px;
+    color: #666;
+}
+
+.certifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.certification-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    min-height: 58px;
+    border: 1px solid #c7c7c7;
+    background: #f5f5f5;
+}
+
+.certification-info {
+    min-width: 0;
+}
+
+.certification-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+}
+
+.certification-org {
+    margin-top: 3px;
+    font-size: 11px;
+    color: #555;
+}
+
+.certification-year {
+    margin-top: 2px;
+    font-size: 10px;
+    color: #777;
+}
+
+.certification-btn {
+    flex-shrink: 0;
+    margin-left: 12px;
+    padding: 5px 9px;
+    border: 1px solid #7f9db9;
+    background: linear-gradient(#ffffff, #d9e5f1);
+    color: #154273;
+    font-size: 11px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.certification-btn:hover {
+    background: #dcecff;
+}

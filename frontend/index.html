@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,447 +18,274 @@
 </head>
 <body>
 
-<!-- =========================================================
-     BOOT SCREEN
-     ========================================================= -->
-
 <div id="boot">
-
     <div class="boot-logo">
         Java<span>OS</span>
     </div>
-
     <div class="boot-tagline">
         Backend Developer Edition
     </div>
-
     <div class="boot-bar-wrap">
         <div class="boot-bar" id="boot-bar"></div>
     </div>
-
     <div class="boot-text" id="boot-text">
         Loading...
     </div>
-
 </div>
 
-
-<!-- =========================================================
-     LOGIN SCREEN
-     ========================================================= -->
-
 <div id="login">
-
     <div class="login-bg"></div>
-
     <div class="login-box">
-
         <div class="login-title">
             JavaOS Professional
         </div>
-
         <div class="login-sub">
             Backend Developer Edition
         </div>
-
         <div class="login-user" id="login-user">
-
             <div class="login-avatar">
                 👨‍💻
             </div>
-
             <div class="login-name">
                 Somveer Dahiya
             </div>
-
             <div class="login-role">
                 Java Backend Developer
             </div>
-
         </div>
-
         <div class="login-hint">
             Click to log in
         </div>
-
     </div>
-
 </div>
-
-
-<!-- =========================================================
-     DESKTOP
-     ========================================================= -->
 
 <div id="desktop">
 
     <div class="wallpaper"></div>
 
-
-    <!-- =====================================================
-         DESKTOP ICONS
-         ===================================================== -->
-
     <div class="desktop-icons" id="desktop-icons">
 
-        <div
-                class="dicon"
-                data-win="about"
-                ondblclick="openWin('about')"
-        >
+        <div class="dicon" data-win="about" ondblclick="openWin('about')">
             <div class="dicon-img">
                 <img src="assets/icons/about.svg" alt="About Me" style="width:100%;height:100%;object-fit:contain;">
             </div>
-
-            <span>
-                About Me
-            </span>
+            <span>About Me</span>
         </div>
 
-
-        <div
-                class="dicon"
-                data-win="skills"
-                ondblclick="openWin('skills')"
-        >
+        <div class="dicon" data-win="skills" ondblclick="openWin('skills')">
             <div class="dicon-img">
                 <img src="assets/icons/skills.svg" alt="Skills" style="width:100%;height:100%;object-fit:contain;">
             </div>
-
-            <span>
-                Skills
-            </span>
+            <span>Skills</span>
         </div>
 
-
-        <div
-                class="dicon"
-                data-win="projects"
-                ondblclick="openWin('projects')"
-        >
+        <div class="dicon" data-win="projects" ondblclick="openWin('projects')">
             <div class="dicon-img">
                 <img src="assets/icons/projects.svg" alt="Projects" style="width:100%;height:100%;object-fit:contain;">
             </div>
-
-            <span>
-                Projects
-            </span>
+            <span>Projects</span>
         </div>
 
-
-        <div
-                class="dicon"
-                data-win="experience"
-                ondblclick="openWin('experience')"
-        >
+        <div class="dicon" data-win="experience" ondblclick="openWin('experience')">
             <div class="dicon-img">
                 <img src="assets/icons/experience.svg" alt="Experience" style="width:100%;height:100%;object-fit:contain;">
             </div>
-
-            <span>
-                Experience
-            </span>
+            <span>Experience</span>
         </div>
 
-
-        <div
-                class="dicon"
-                data-win="resume"
-                ondblclick="openWin('resume')"
-        >
+        <div class="dicon" data-win="resume" ondblclick="openWin('resume')">
             <div class="dicon-img">
                 <img src="assets/icons/resume.svg" alt="Resume" style="width:100%;height:100%;object-fit:contain;">
             </div>
-
-            <span>
-                Resume.txt
-            </span>
+            <span>Resume.txt</span>
         </div>
 
-
-        <div
-                class="dicon"
-                data-win="contact"
-                ondblclick="openWin('contact')"
-        >
+        <div class="dicon" data-win="contact" ondblclick="openWin('contact')">
             <div class="dicon-img">
                 <img src="assets/icons/contact.svg" alt="Contact" style="width:100%;height:100%;object-fit:contain;">
             </div>
+            <span>Contact</span>
+        </div>
 
-            <span>
-                Contact
-            </span>
+        <div class="dicon" data-win="certifications" ondblclick="openWin('certifications')">
+            <div class="dicon-img">
+                <img src="assets/icons/certifications.webp" alt="Certifications" style="width:100%;height:100%;object-fit:contain;">
+            </div>
+            <span>Certifications</span>
         </div>
 
     </div>
-
-
-    <!-- =====================================================
-         TASKBAR
-         ===================================================== -->
 
     <div id="taskbar">
 
-        <div
-                id="start-btn"
-                onclick="toggleStart()"
-        >
+        <div id="start-btn" onclick="toggleStart()">
             <span class="win-logo">
                 ☕
             </span>
-
             Start
         </div>
 
-
-        <div
-                class="taskbar-tasks"
-                id="taskbar-tasks"
-        ></div>
-
+        <div class="taskbar-tasks" id="taskbar-tasks"></div>
 
         <div class="taskbar-tray">
-
             <span title="Java 17">
                 ☕
             </span>
-
             <span title="Spring Boot">
                 🍃
             </span>
-
             <div id="clock">
                 12:00 PM
             </div>
-
         </div>
 
     </div>
 
-
-    <!-- =====================================================
-         START MENU
-         ===================================================== -->
-
     <div id="start-menu">
 
-        <!-- Start Menu Header -->
-
         <div class="sm-header">
-
             <div class="sm-avatar">
                 👨‍💻
             </div>
-
             <div>
-
                 <div class="sm-name">
                     Somveer Dahiya
                 </div>
-
                 <div class="sm-role">
                     Backend Developer
                 </div>
-
             </div>
-
         </div>
-
-
-        <!-- Start Menu Body -->
 
         <div class="sm-body">
 
-            <!-- Left Side -->
-
             <div class="sm-left">
 
-                <div
-                        class="sm-item"
-                        onclick="openWin('about');toggleStart()"
-                >
-
+                <div class="sm-item" onclick="openWin('about');toggleStart()">
                     <span class="si">
                         <img src="assets/icons/about.svg" alt="About Me" class="social-icon">
                     </span>
-
                     <div>
-
                         <span class="si-label">
                             About Me
                         </span>
-
                         <span class="si-sub">
                             Who I am
                         </span>
-
                     </div>
-
                 </div>
 
-
-                <div
-                        class="sm-item"
-                        onclick="openWin('skills');toggleStart()"
-                >
-
+                <div class="sm-item" onclick="openWin('skills');toggleStart()">
                     <span class="si">
                         <img src="assets/icons/skills.svg" alt="Skills" class="social-icon">
                     </span>
-
                     <div>
-
                         <span class="si-label">
                             Skills
                         </span>
-
                         <span class="si-sub">
                             Tech stack
                         </span>
-
                     </div>
-
                 </div>
 
-
-                <div
-                        class="sm-item"
-                        onclick="openWin('projects');toggleStart()"
-                >
-
+                <div class="sm-item" onclick="openWin('projects');toggleStart()">
                     <span class="si">
                         <img src="assets/icons/projects.svg" alt="Projects" class="social-icon">
                     </span>
-
                     <div>
-
                         <span class="si-label">
                             Projects
                         </span>
-
                         <span class="si-sub">
                             My work
                         </span>
-
                     </div>
-
                 </div>
 
-
-                <div
-                        class="sm-item"
-                        onclick="openWin('experience');toggleStart()"
-                >
-
+                <div class="sm-item" onclick="openWin('experience');toggleStart()">
                     <span class="si">
                         <img src="assets/icons/experience.svg" alt="Experience" class="social-icon">
                     </span>
-
                     <div>
-
                         <span class="si-label">
                             Experience
                         </span>
-
                         <span class="si-sub">
                             Work history
                         </span>
-
                     </div>
-
                 </div>
-
 
                 <div class="sm-sep"></div>
 
-
-                <div
-                        class="sm-item"
-                        onclick="openWin('resume');toggleStart()"
-                >
-
+                <div class="sm-item" onclick="openWin('resume');toggleStart()">
                     <span class="si">
                         <img src="assets/icons/resume.svg" alt="Resume" class="social-icon">
                     </span>
-
                     <div>
-
                         <span class="si-label">
                             Resume.txt
                         </span>
-
                         <span class="si-sub">
                             Open in Notepad
                         </span>
-
                     </div>
-
                 </div>
 
-
-                <div
-                        class="sm-item"
-                        onclick="openWin('contact');toggleStart()"
-                >
-
+                <div class="sm-item" onclick="openWin('contact');toggleStart()">
                     <span class="si">
                         <img src="assets/icons/contact.svg" alt="Contact" class="social-icon">
                     </span>
-
                     <div>
-
                         <span class="si-label">
                             Contact
                         </span>
-
                         <span class="si-sub">
                             Get in touch
                         </span>
-
                     </div>
-
                 </div>
 
             </div>
 
-
-            <!-- Right Side -->
-
             <div class="sm-right">
-                <div class="sm-right-title">Quick Links</div>
+
+                <div class="sm-right-title">
+                    Quick Links
+                </div>
+
                 <div class="sm-item" onclick="window.open('https://github.com/SomveerDahiya1','_blank')">
                     <img src="assets/icons/github.svg" class="social-icon" alt="GitHub">
                     <span class="si-label" style="font-size:10px">GitHub</span>
                 </div>
+
                 <div class="sm-item" onclick="window.open('https://www.linkedin.com/in/somveerdahiya2005/','_blank')">
                     <img src="assets/icons/linkedin.svg" class="social-icon" alt="LinkedIn">
                     <span class="si-label" style="font-size:10px">LinkedIn</span>
                 </div>
+
                 <div class="sm-item" onclick="window.open('https://leetcode.com/u/Somveer2005/','_blank')">
                     <img src="assets/icons/leetcode.svg" class="social-icon" alt="LeetCode">
                     <span class="si-label" style="font-size:10px">LeetCode</span>
                 </div>
-            </div>
 
+                <div class="sm-item" onclick="window.open('https://www.hackerrank.com/profile/somveerdahiya009','_blank')">
+                    <img src="assets/icons/hackerrank.svg" class="social-icon" alt="HackerRank">
+                    <span class="si-label" style="font-size:10px">HackerRank</span>
+                </div>
+
+            </div>
 
         </div>
 
-
-        <!-- Start Menu Footer -->
-
         <div class="sm-footer">
 
-            <div
-                    class="sm-footer-btn"
-                    onclick="location.reload()"
-            >
+            <div class="sm-footer-btn" onclick="location.reload()">
                 🔄 Restart
             </div>
 
-            <div
-                    class="sm-footer-btn"
-                    onclick="location.reload()"
-            >
+            <div class="sm-footer-btn" onclick="location.reload()">
                 ⏻ Log Off
             </div>
 
@@ -465,16 +293,7 @@
 
     </div>
 
-
-    <!-- =====================================================
-         NOTIFICATION
-         ===================================================== -->
-
-    <div
-            class="notif"
-            id="notif"
-            style="display:none;right:0;position:fixed;bottom:30px"
-    >
+    <div class="notif" id="notif" style="display:none;right:0;position:fixed;bottom:30px">
 
         <div class="notif-title">
             ☕ Spring Boot Started
@@ -487,16 +306,6 @@
     </div>
 
 </div>
-
-
-<!-- =========================================================
-     WINDOW TEMPLATES
-     ========================================================= -->
-
-
-<!-- =========================================================
-     ABOUT
-     ========================================================= -->
 
 <template id="tpl-about">
 
@@ -516,31 +325,23 @@
                 Java Backend Developer
             </div>
 
-
             <div class="sidebar-links">
 
                 <div class="slink">
                     📍 India
                 </div>
 
-                <div
-                        class="slink"
-                        onclick="openWin('contact')"
-                >
+                <div class="slink" onclick="openWin('contact')">
                     📧 Contact
                 </div>
 
-                <div
-                        class="slink"
-                        onclick="openWin('resume')"
-                >
+                <div class="slink" onclick="openWin('resume')">
                     📄 Resume
                 </div>
 
             </div>
 
         </div>
-
 
         <div class="about-main">
 
@@ -570,69 +371,57 @@
                 why tabs are better than spaces.
             </p>
 
-
             <div class="info-grid">
 
                 <div class="info-item">
                     <label>
                         Experience
                     </label>
-
                     <span>
                         2+ Years
                     </span>
                 </div>
 
-
                 <div class="info-item">
                     <label>
                         Primary Language
                     </label>
-
                     <span>
                         Java 17
                     </span>
                 </div>
 
-
                 <div class="info-item">
                     <label>
                         Framework
                     </label>
-
                     <span>
                         Spring Boot
                     </span>
                 </div>
 
-
                 <div class="info-item">
                     <label>
                         Availability
                     </label>
-
                     <span>
                         Open to Work
                     </span>
                 </div>
 
-
                 <div class="info-item">
                     <label>
                         Preferred IDE
                     </label>
-
                     <span>
                         IntelliJ IDEA
                     </span>
                 </div>
 
-
                 <div class="info-item">
                     <label>
                         Favorite DB
                     </label>
-
                     <span>
                         MySQL
                     </span>
@@ -646,90 +435,52 @@
 
 </template>
 
-
-<!-- =========================================================
-     SKILLS
-     ========================================================= -->
-
 <template id="tpl-skills">
 
     <div class="explorer-wrap">
 
         <div class="explorer-tree">
 
-            <div
-                    class="tree-item active"
-                    onclick="showSkillSection('core')"
-            >
+            <div class="tree-item active" onclick="showSkillSection('core')">
                 <span class="tree-icon">
                     📂
                 </span>
-
                 Core Java
             </div>
 
-
-            <div
-                    class="tree-item"
-                    onclick="showSkillSection('spring')"
-            >
+            <div class="tree-item" onclick="showSkillSection('spring')">
                 <span class="tree-icon">
                     📁
                 </span>
-
                 Spring
             </div>
 
-
-            <div
-                    class="tree-item"
-                    onclick="showSkillSection('database')"
-            >
+            <div class="tree-item" onclick="showSkillSection('database')">
                 <span class="tree-icon">
                     📁
                 </span>
-
                 Databases
             </div>
 
-
-            <div
-                    class="tree-item"
-                    onclick="showSkillSection('devops')"
-            >
+            <div class="tree-item" onclick="showSkillSection('devops')">
                 <span class="tree-icon">
                     📁
                 </span>
-
                 DevOps
             </div>
 
-
-            <div
-                    class="tree-item"
-                    onclick="showSkillSection('testing')"
-            >
+            <div class="tree-item" onclick="showSkillSection('testing')">
                 <span class="tree-icon">
                     📁
                 </span>
-
                 Testing
             </div>
 
         </div>
 
+        <div class="explorer-main" id="skills-main">
 
-        <div
-                class="explorer-main"
-                id="skills-main"
-        >
-
-            <!-- Core Java -->
-
-            <div
-                    id="section-core"
-                    class="skill-section"
-            >
+            <div id="section-core" class="skill-section">
 
                 <h3>
                     Core Java
@@ -767,7 +518,6 @@
 
                 </div>
 
-
                 <div class="xp-bar-wrap">
 
                     <div class="xp-bar-label">
@@ -776,14 +526,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:90%"
-                        ></div>
+                        <div class="xp-fill" style="width:90%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -793,14 +539,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:80%"
-                        ></div>
+                        <div class="xp-fill" style="width:80%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -810,24 +552,14 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:70%"
-                        ></div>
+                        <div class="xp-fill" style="width:70%"></div>
                     </div>
 
                 </div>
 
             </div>
 
-
-            <!-- Spring -->
-
-            <div
-                    id="section-spring"
-                    class="skill-section"
-                    style="display:none"
-            >
+            <div id="section-spring" class="skill-section" style="display:none">
 
                 <h3>
                     Spring Ecosystem
@@ -861,7 +593,6 @@
 
                 </div>
 
-
                 <div class="xp-bar-wrap">
 
                     <div class="xp-bar-label">
@@ -870,14 +601,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:88%"
-                        ></div>
+                        <div class="xp-fill" style="width:88%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -887,14 +614,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:75%"
-                        ></div>
+                        <div class="xp-fill" style="width:75%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -904,24 +627,14 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:82%"
-                        ></div>
+                        <div class="xp-fill" style="width:82%"></div>
                     </div>
 
                 </div>
 
             </div>
 
-
-            <!-- Database -->
-
-            <div
-                    id="section-database"
-                    class="skill-section"
-                    style="display:none"
-            >
+            <div id="section-database" class="skill-section" style="display:none">
 
                 <h3>
                     Databases
@@ -951,7 +664,6 @@
 
                 </div>
 
-
                 <div class="xp-bar-wrap">
 
                     <div class="xp-bar-label">
@@ -960,14 +672,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:85%"
-                        ></div>
+                        <div class="xp-fill" style="width:85%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -977,14 +685,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:72%"
-                        ></div>
+                        <div class="xp-fill" style="width:72%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -994,24 +698,14 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:65%"
-                        ></div>
+                        <div class="xp-fill" style="width:65%"></div>
                     </div>
 
                 </div>
 
             </div>
 
-
-            <!-- DevOps -->
-
-            <div
-                    id="section-devops"
-                    class="skill-section"
-                    style="display:none"
-            >
+            <div id="section-devops" class="skill-section" style="display:none">
 
                 <h3>
                     DevOps & Build Tools
@@ -1041,7 +735,6 @@
 
                 </div>
 
-
                 <div class="xp-bar-wrap">
 
                     <div class="xp-bar-label">
@@ -1050,14 +743,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:75%"
-                        ></div>
+                        <div class="xp-fill" style="width:75%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -1067,14 +756,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:85%"
-                        ></div>
+                        <div class="xp-fill" style="width:85%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -1084,24 +769,14 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:88%"
-                        ></div>
+                        <div class="xp-fill" style="width:88%"></div>
                     </div>
 
                 </div>
 
             </div>
 
-
-            <!-- Testing -->
-
-            <div
-                    id="section-testing"
-                    class="skill-section"
-                    style="display:none"
-            >
+            <div id="section-testing" class="skill-section" style="display:none">
 
                 <h3>
                     Testing
@@ -1127,7 +802,6 @@
 
                 </div>
 
-
                 <div class="xp-bar-wrap">
 
                     <div class="xp-bar-label">
@@ -1136,14 +810,10 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:80%"
-                        ></div>
+                        <div class="xp-fill" style="width:80%"></div>
                     </div>
 
                 </div>
-
 
                 <div class="xp-bar-wrap">
 
@@ -1153,10 +823,7 @@
                     </div>
 
                     <div class="xp-bar">
-                        <div
-                                class="xp-fill"
-                                style="width:78%"
-                        ></div>
+                        <div class="xp-fill" style="width:78%"></div>
                     </div>
 
                 </div>
@@ -1169,21 +836,13 @@
 
 </template>
 
-
-<!-- =========================================================
-     PROJECTS
-     ========================================================= -->
-
 <template id="tpl-projects">
 
     <div class="projects-wrap">
 
         <div class="proj-card">
 
-            <div
-                    class="proj-header"
-                    onclick="toggleProj(this)"
-            >
+            <div class="proj-header" onclick="toggleProj(this)">
 
                 <span class="proj-icon">
                     🛒
@@ -1198,7 +857,6 @@
                 </span>
 
             </div>
-
 
             <div class="proj-body open">
 
@@ -1245,13 +903,9 @@
 
         </div>
 
-
         <div class="proj-card">
 
-            <div
-                    class="proj-header"
-                    onclick="toggleProj(this)"
-            >
+            <div class="proj-header" onclick="toggleProj(this)">
 
                 <span class="proj-icon">
                     🎓
@@ -1266,7 +920,6 @@
                 </span>
 
             </div>
-
 
             <div class="proj-body">
 
@@ -1305,13 +958,9 @@
 
         </div>
 
-
         <div class="proj-card">
 
-            <div
-                    class="proj-header"
-                    onclick="toggleProj(this)"
-            >
+            <div class="proj-header" onclick="toggleProj(this)">
 
                 <span class="proj-icon">
                     🔗
@@ -1326,7 +975,6 @@
                 </span>
 
             </div>
-
 
             <div class="proj-body">
 
@@ -1369,13 +1017,9 @@
 
         </div>
 
-
         <div class="proj-card">
 
-            <div
-                    class="proj-header"
-                    onclick="toggleProj(this)"
-            >
+            <div class="proj-header" onclick="toggleProj(this)">
 
                 <span class="proj-icon">
                     💬
@@ -1390,7 +1034,6 @@
                 </span>
 
             </div>
-
 
             <div class="proj-body">
 
@@ -1432,11 +1075,6 @@
     </div>
 
 </template>
-
-
-<!-- =========================================================
-     EXPERIENCE
-     ========================================================= -->
 
 <template id="tpl-experience">
 
@@ -1487,7 +1125,6 @@
 
         </div>
 
-
         <div class="exp-card">
 
             <span class="exp-date-badge">
@@ -1528,13 +1165,9 @@
 
         </div>
 
-
         <div class="exp-card">
 
-            <span
-                    class="exp-date-badge"
-                    style="background:#5a7ab0"
-            >
+            <span class="exp-date-badge" style="background:#5a7ab0">
                 2020 – 2023
             </span>
 
@@ -1562,10 +1195,15 @@
                     Data Structures, DBMS, Operating Systems,
                     Computer Networks
                 </li>
+
             </ul>
+
         </div>
+
     </div>
+
 </template>
+
 <template id="tpl-resume">
 
     <div class="notepad-wrap">
@@ -1584,15 +1222,11 @@
                 Format
             </span>
 
-            <span
-                    class="notepad-tool"
-                    onclick="window.print()"
-            >
+            <span class="notepad-tool" onclick="window.print()">
                 Print
             </span>
 
         </div>
-
 
         <div class="notepad-body">
 
@@ -1670,50 +1304,57 @@
 
 </template>
 
-
-<!-- =========================================================
-     CONTACT
-     ========================================================= -->
 <template id="tpl-contact">
+
     <div class="contact-wrap">
+
         <h2>
             📧 Get in Touch
         </h2>
+
         <div class="contact-items">
-            <div
-                    class="contact-item"
-                    onclick="window.open('mailto:somveerdahiya009@email.com')"
-            >
+
+            <div class="contact-item" onclick="window.open('mailto:somveerdahiya009@email.com')">
+
                 <span class="ci-icon">
                     ✉️
                 </span>
+
                 <div>
+
                     <div class="ci-label">
                         Email
                     </div>
+
                     <div class="ci-val">
                         somveerdahiya009@gmail.com
                     </div>
+
                 </div>
+
             </div>
-            <div
-                    class="contact-item"
-                    onclick="window.open('www.linkedin.com/in/somveerdahiya2005','_blank')">
+
+            <div class="contact-item" onclick="window.open('www.linkedin.com/in/somveerdahiya2005','_blank')">
+
                 <span class="ci-icon">
                     🔗
                 </span>
+
                 <div>
+
                     <div class="ci-label">
                         LinkedIn
                     </div>
+
                     <div class="ci-val">
                         linkedin.com/in/somveerdahiya2005
                     </div>
+
                 </div>
+
             </div>
-            <div
-                    class="contact-item"
-                    onclick="window.open('https://github.com/SomveerDahiya1', '_blank')">
+
+            <div class="contact-item" onclick="window.open('https://github.com/SomveerDahiya1', '_blank')">
 
                 <span class="ci-icon">
                     🐙
@@ -1732,7 +1373,6 @@
                 </div>
 
             </div>
-
 
             <div class="contact-item">
 
@@ -1753,7 +1393,6 @@
                 </div>
 
             </div>
-
 
             <div class="contact-item">
 
@@ -1777,7 +1416,6 @@
 
         </div>
 
-
         <div class="contact-msg">
 
             💬 I'm currently open to full-time backend roles
@@ -1790,10 +1428,116 @@
 
 </template>
 
+<template id="tpl-certifications">
 
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
+    <div class="certifications-container">
+
+        <div class="certifications-header">
+
+            <div class="certifications-title">
+                My Certifications
+            </div>
+
+            <div class="certifications-subtitle">
+                Professional certificates and achievements
+            </div>
+
+        </div>
+
+        <div class="certifications-list">
+
+            <div class="certification-item">
+
+                <div class="certification-info">
+
+                    <div class="certification-name">
+                        Certificate Name
+                    </div>
+
+                    <div class="certification-org">
+                        Organization
+                    </div>
+
+                    <div class="certification-year">
+                        Year
+                    </div>
+
+                </div>
+
+                <a
+                        class="certification-btn"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                >
+                    View Certificate
+                </a>
+
+            </div>
+
+            <div class="certification-item">
+
+                <div class="certification-info">
+
+                    <div class="certification-name">
+                        Certificate Name
+                    </div>
+
+                    <div class="certification-org">
+                        Organization
+                    </div>
+
+                    <div class="certification-year">
+                        Year
+                    </div>
+
+                </div>
+
+                <a
+                        class="certification-btn"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                >
+                    View Certificate
+                </a>
+
+            </div>
+
+            <div class="certification-item">
+
+                <div class="certification-info">
+
+                    <div class="certification-name">
+                        Certificate Name
+                    </div>
+
+                    <div class="certification-org">
+                        Organization
+                    </div>
+
+                    <div class="certification-year">
+                        Year
+                    </div>
+
+                </div>
+
+                <a
+                        class="certification-btn"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                >
+                    View Certificate
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
 
 <script src="js/main.js"></script>
 <script src="js/boot.js"></script>
@@ -1803,6 +1547,7 @@
 <script src="js/interactions.js"></script>
 <script src="js/chatbot.js"></script>
 <script src="js/desktop.js"></script>
-</body>
 
+</body>
 </html>
+
